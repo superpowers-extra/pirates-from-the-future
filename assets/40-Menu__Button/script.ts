@@ -5,6 +5,9 @@ class ButtonBehavior extends Sup.Behavior {
 
   focus_scale : Sup.Math.Vector3 = new Sup.Math.Vector3(0,0,0); 
   focus_sprite : string; 
+
+  focus_action;
+  unfocus_action;
   
   method : string;
 
@@ -15,15 +18,15 @@ class ButtonBehavior extends Sup.Behavior {
     this.initial_scale = this.actor.getLocalScale();
   }
   
-  onFocus() : void {
+  public onFocus() : void {
     this.actor.setLocalScale( this.initial_scale.clone().add( this.focus_scale ));
     if(this.focus_sprite != undefined) {
       this.actor.spriteRenderer.setSprite(this.focus_sprite);
     }
   }
 
-  unFocus() : void {
-    this.actor.setLocalScale( this.initial_scale );
+  public unFocus() : void {
+    this.actor.setLocalScale( this.initial_scale.clone() );
     if(this.focus_sprite != undefined) {
       this.actor.spriteRenderer.setSprite(this.initial_sprite);
     }

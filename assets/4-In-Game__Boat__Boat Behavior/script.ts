@@ -2,7 +2,7 @@ let colliderPosition = new Sup.Math.Vector3();
 
 class BoatBehavior extends Sup.Behavior {
   position: Sup.Math.Vector3;
-  offset = { x: 0, z: 0 };
+  chunkOffset = { x: 0, z: 0 };
   angle: number;
 
   acceleration = 0;
@@ -33,11 +33,28 @@ class BoatBehavior extends Sup.Behavior {
   */
 
   animationTimer = 0;
+
+  reactorLeft: Sup.Actor;
+  reactorRight: Sup.Actor;
+  burstLeft: Sup.Actor;
+  burstRight: Sup.Actor;
+  particuleList: { actor: Sup.Actor, speed: Sup.Math.Vector3 }[] = [];
+
+  splashRndr: Sup.ModelRenderer;
+
+  //FACTOR ENTRE 0 ET 1
   
   awake() {
     Game.boatBehavior = this;
     this.position = this.actor.getLocalPosition();
     this.angle = this.actor.getLocalEulerY();
+    
+    this.reactorLeft = this.actor.getChild("Reactor Left");
+    this.reactorRight = this.actor.getChild("Reactor Right");
+    this.burstLeft = this.reactorLeft.getChild("Burst");
+    this.burstRight = this.reactorRight.getChild("Burst");
+    
+    this.splashRndr = this.actor.getChild("Splash").modelRenderer;
   }
 
   setPosition(position) {
@@ -77,24 +94,39 @@ class BoatBehavior extends Sup.Behavior {
     for (let collider of Game.circleColliders) {
       colliderPosition.copy(collider.position).y = this.position.y;
       
-      let diff = colliderPosition.subtract(this.position);
-      let penetration = diff.length() - (collider.radius + BoatBehavior.radius);
-      if (penetration > 0) this.position.add(diff.normalize().multiplyScalar(penetration));
+      let diff = colliderPosition.subtract(this.position).add(this.chunkOffset.x * Game.settings.chunkSize, 0, this.chunkOffset.z * Game.settings.chunkSize);
+      let penetration = (collider.radius + BoatBehavior.radius) - diff.length();
+      if (penetration > 0) {
+        if (speedLength > 1.5) {
+          Game.cameraBehavior.shake();
+          this.speed.subtract(diff);
+          //this.speed.subtract(diff.normalize().multiplyScalar(-penetration / 10));
+          //this.speed.multiplyScalar(-0.2);
+        } {
+        
+          let oldPosition = this.position.clone();
+          this.position.add(diff.normalize().multiplyScalar(-penetration));
+          this.speed.subtract(diff.normalize().multiplyScalar(-penetration));
+          //this.speed.copy(this.position).subtract(oldPosition);
+          if (Sup.Input.isKeyDown("SPACE")) Sup.log(this.speed);
+        }
+        
+      }
     }
     
     // Map edge teleportation
-    if (this.position.x / Game.settings.chunkSize - this.offset.x > Game.settings.mapSize / 2) {
-      this.offset.x += Game.settings.mapSize;
+    if (this.position.x / Game.settings.chunkSize - this.chunkOffset.x > Game.settings.mapSize / 2) {
+      this.chunkOffset.x += Game.settings.mapSize;
       for (let islandActor of Game.chunkActors) islandActor.moveLocalX(Game.settings.chunkSize * Game.settings.mapSize);
-    } else if (this.position.x / Game.settings.chunkSize - this.offset.x < -Game.settings.mapSize / 2) {
-      this.offset.x -= Game.settings.mapSize;
+    } else if (this.position.x / Game.settings.chunkSize - this.chunkOffset.x < -Game.settings.mapSize / 2) {
+      this.chunkOffset.x -= Game.settings.mapSize;
       for (let islandActor of Game.chunkActors) islandActor.moveLocalX(-Game.settings.chunkSize * Game.settings.mapSize);
     }
-    if (this.position.z / Game.settings.chunkSize - this.offset.z > Game.settings.mapSize / 2) {
-      this.offset.z += Game.settings.mapSize;
+    if (this.position.z / Game.settings.chunkSize - this.chunkOffset.z > Game.settings.mapSize / 2) {
+      this.chunkOffset.z += Game.settings.mapSize;
       for (let islandActor of Game.chunkActors) islandActor.moveLocalZ(Game.settings.chunkSize * Game.settings.mapSize);
-    } else if (this.position.z / Game.settings.chunkSize - this.offset.z < -Game.settings.mapSize / 2) {
-      this.offset.z -= Game.settings.mapSize;
+    } else if (this.position.z / Game.settings.chunkSize - this.chunkOffset.z < -Game.settings.mapSize / 2) {
+      this.chunkOffset.z -= Game.settings.mapSize;
       for (let islandActor of Game.chunkActors) islandActor.moveLocalZ(-Game.settings.chunkSize * Game.settings.mapSize);
     }
     this.actor.setLocalPosition(this.position);
@@ -104,6 +136,61 @@ class BoatBehavior extends Sup.Behavior {
     this.actor.setLocalY(-5 + speedLength * 1.5 + Math.sin(this.animationTimer / 30));
     
     this.actor.setLocalEulerX(-speedLength / 10);
+    this.actor.setLocalEulerZ(-this.rotationSpeed * 6);
+    
+    this.reactorLeft.setLocalEulerY(this.rotationSpeed * 6);
+    this.reactorRight.setLocalEulerY(this.rotationSpeed * 6);
+    
+    let scale = this.acceleration * 300;
+    if (this.acceleration > 0.8 * BoatBehavior.maxAcceleration) scale += Math.sin(this.animationTimer / 1.5);
+    
+    this.burstLeft.lookAt(Game.cameraBehavior.position);
+    let scaleLeft = Math.max(0.01, scale / (1 + this.rotationSpeed * 12));
+    this.burstLeft.setLocalScale(scaleLeft, scaleLeft, 1);
+    
+    this.burstRight.lookAt(Game.cameraBehavior.position);
+    let scaleRight = Math.max(0.01, scale / (1 - this.rotationSpeed * 12));
+    this.burstRight.setLocalScale(scaleRight, scaleRight, 1);
+    
+    // Particules && splash
+    if (speedLength > 0.4 * BoatBehavior.maxSpeed && targetAcceleration !== 0) {
+      let direction = new Sup.Math.Vector3(Math.sin(this.angle), 0, Math.cos(this.angle));
+      
+      let particuleLeftActor = new Sup.Actor("Particule");
+      particuleLeftActor.setLocalPosition(this.burstLeft.getPosition()).moveLocal(direction.clone().multiplyScalar(8)).setY(3);
+      particuleLeftActor.setLocalEulerAngles(-Math.PI / 4, 0, this.angle);
+      
+      new Sup.SpriteRenderer(particuleLeftActor, "In-Game/Boat/Reactor/Particle").setAnimation("Animation", false);
+      this.particuleList.push({ actor: particuleLeftActor, speed: direction.clone().multiplyScalar(-12) });
+      
+      let particuleRightActor = new Sup.Actor("Particule");
+      particuleRightActor.setLocalPosition(this.burstRight.getPosition()).moveLocal(direction.clone().multiplyScalar(8)).setY(3);
+      particuleRightActor.setLocalEulerAngles(-Math.PI / 4, 0, this.angle);
+      new Sup.SpriteRenderer(particuleRightActor, "In-Game/Boat/Reactor/Particle").setAnimation("Animation", false);
+      this.particuleList.push({ actor: particuleRightActor, speed: direction.clone().multiplyScalar(-12) }); 
+    }
+    
+    //if (Sup.Input.isKeyDown("SPACE")) Sup.log(speedLength / BoatBehavior.maxSpeed);
+    this.splashRndr.getUniforms()["factor"].value = speedLength / BoatBehavior.maxSpeed;
+    
+    let speedAngle = Math.atan2(this.speed.x, this.speed.z);
+    this.splashRndr.getUniforms()["moveDirection"].value = Sup.Math.clamp(Sup.Math.wrapAngle(speedAngle - this.angle), -1, 1);
+    
+    while (this.particuleList[0] != null && !this.particuleList[0].actor.spriteRenderer.isAnimationPlaying()) {
+      this.particuleList[0].actor.destroy();
+      this.particuleList.splice(0, 1);
+    }
+    
+    for (let particule of this.particuleList) {
+      particule.actor.moveLocal(particule.speed);
+      particule.speed.multiplyScalar(0.1);
+      
+      let speedLength = particule.speed.length();
+      let scale = Math.max(1, speedLength / 2);
+      particule.actor.setLocalScale(1, scale, 1);
+      
+      if (speedLength < 4) particule.actor.moveOrientedX(Sup.Math.Random.float(-0.1, 0.1));
+    }
   }
 
   control(index: number) {

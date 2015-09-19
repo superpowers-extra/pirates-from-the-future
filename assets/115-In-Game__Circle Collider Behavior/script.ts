@@ -2,16 +2,21 @@ class CircleColliderBehavior extends Sup.Behavior {
   radius: number;
   position: Sup.Math.Vector3;
 
+  // Set to true if the collider is onboard the ship and should collide with characters
+  onboard = false;
+
   awake() {
-    Game.circleColliders.push(this);
+    if (!this.onboard) Game.circleColliders.push(this);
+    else Game.onboardCircleColliders.push(this);
   }
 
   start() {
-      this.position = this.actor.getPosition();
+    this.position = this.actor.getLocalPosition();
   }
 
   onDestroy() {
-    Game.circleColliders.splice(Game.circleColliders.indexOf(this), 1);
+    if (!this.onboard) Game.circleColliders.splice(Game.circleColliders.indexOf(this), 1);
+    else Game.onboardCircleColliders.splice(Game.onboardCircleColliders.indexOf(this), 1);
   }
 }
 Sup.registerBehavior(CircleColliderBehavior);

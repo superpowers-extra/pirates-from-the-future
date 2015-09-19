@@ -1,4 +1,5 @@
 class CameraBehavior extends Sup.Behavior {
+  position = new Sup.Math.Vector3();
   
   private offset: Sup.Math.Vector3;
   private waterOffset: Sup.Math.Vector3;
@@ -7,6 +8,9 @@ class CameraBehavior extends Sup.Behavior {
 
   water: Sup.Actor;
   light: Sup.Light;
+
+  private shakeTimer = 0;
+  static shakeDelay = 30;
   
   awake() {
     Game.cameraBehavior = this;
@@ -22,13 +26,19 @@ class CameraBehavior extends Sup.Behavior {
   }
   
   forcePosition() {
-    let pos = Game.boatBehavior.position.clone().add(this.offset);
-    this.actor.setLocalPosition(pos);
+    this.position.copy(Game.boatBehavior.position).add(this.offset);
+    this.actor.setLocalPosition(this.position);
+  }
+
+  shake() {
+    if (this.shakeTimer > 0) return;
+    Sup.log("shake");
+    this.shakeTimer = CameraBehavior.shakeDelay;
   }
 
   update() {
-    let pos = Game.boatBehavior.position.clone().add(this.offset);
-    this.actor.setLocalPosition(pos);
+    this.position.copy(Game.boatBehavior.position).add(this.offset);
+    this.actor.setLocalPosition(this.position);
     
     let waterPosition = this.actor.getLocalPosition().add(this.waterOffset);
     waterPosition.x = Math.round(waterPosition.x);
@@ -40,6 +50,12 @@ class CameraBehavior extends Sup.Behavior {
     
     let lightTarget = lightPos.add(this.lightTargetOffset);
     this.light.setTarget(lightTarget);
+    
+    if (this.shakeTimer > 0) {
+      this.shakeTimer -= 1;
+      let limit = 1;
+      this.actor.moveLocal(Sup.Math.Random.float(-limit, limit), Sup.Math.Random.float(-limit, limit), 0);
+    }
     
     // TMP DEBUG
     if (Sup.Input.isKeyDown("I")){

@@ -1,75 +1,156 @@
 let Dialogues = {
   test1 : {
-    dialogue: "salut !",
+    dialogue: "salut les gars ça va bien ?!\nGOGO LES MECS!",
     buttons: {
-      cancel : (self) => {
-        self.close();
+      test : {
+        skin : "Menu/TMP/Button1",
+        action : (boiteDialogue) => {
+          Sup.log("v3");
+        }
       },
-      next : (self) => {
-        Sup.log("lol");
-      }
+      cancel : {
+        action : (boiteDialogue) => {
+          Sup.log("v2");
+        }
+      },
+      accepter : {
+        action : (boiteDialogue) => {
+          Sup.log("v1");
+        }
+      },
     }
-  }
+  },
 }
 
 // Class gestion des dialogues ! 
 class DialogueBehavior extends Sup.Behavior {
   
-  keyName : string
-  public storeWindow = [];
+  public offset : number = -3;
+  
+  // Enfants de notre boîte de dialogue!
+  private buttonsLocation   : Sup.Actor;
+  private dialogueLocation  : Sup.Actor;
+  private avatarLocation    : Sup.Actor;
 
-  defaultWindow : number;
-  activeWindow : number;
-
-  private buttonsLocation;
-
+  // Storage buttons instance (permettera d'effectuer des actions précise sur nos boutons!)
+  public storeButtons = [];
+  private selected : number = 0;
+  private isOpen : boolean = false;
+  
   awake() {
-    let window = Sup.getActor("Window");
-    this.buttonsLocation = window.getChild("Buttons");
-    //this.actor.setVisible(false);
+    // On recherche nos enfants!
+    this.buttonsLocation  = this.actor.getChild("Buttons");
+    this.dialogueLocation = this.actor.getChild("Dialogue");
+    this.avatarLocation   = this.actor.getChild("Avatar")
+    this.actor.setVisible(false);
+    
+    this.open("test1");
   }
 
-  open() {
-    let Dialogue = Dialogues[this.keyName];
-    let i = 0;
+  open(dialogueName: string) {
+    this.storeButtons = [];
+    let conf = Dialogues[dialogueName]
     
-    for(let k in Dialogue.buttons) {
-      let v = Dialogue.buttons[k];
-      let button = new Sup.Actor(k,this.buttonsLocation);
-      
-      // On configure le bouton
-      if(i == 0) {
-        button.setLocalPosition( new Sup.Math.Vector3(0,0,0) );
+    // On applique le texte a notre fenêtre dialogue.
+    //this.dialogueLocation.textRenderer.setText(conf.dialogue);
+    this.dialogueLocation.addBehavior(TextBehavior,{"text":conf.dialogue,"textShowSpeed":"0.03"});
+    
+    // Set Sprite for avatar
+    
+    // Destroy all buttons 
+    let buttonsChildren = this.buttonsLocation.getChildren();
+    if(buttonsChildren.length > 0) {
+      for(let k in buttonsChildren) {
+        buttonsChildren[k].destroy();
       }
-      else {
-        button.setLocalPosition( new Sup.Math.Vector3(i*-3.5,0,0) );
-      }
-      button.setLocalScale( new Sup.Math.Vector3( 3 , 3 , 1 ));
-      let sprite = new Sup.SpriteRenderer(button);
-      sprite.setSprite("Menu/TMP/Button2");
-      let instance = button.addBehavior(ButtonBehavior);
+    }
+    
+    let vector = new Sup.Math.Vector3(0.42,0.42,0);
+    
+    // Construct all buttons
+    let i = 0;
+    for(let indice in conf.buttons) {
+      let skin = conf.buttons[indice].skin || "Menu/TMP/Button2";
+      let action = conf.buttons[indice].action;
       
-      // On crée un texte sur notre bouton : 
-      let text = new Sup.Actor("texte",button);
-      text.setLocalPosition( new Sup.Math.Vector3( 0 , 0 , 1 ));
-      let textRenderer = new Sup.TextRenderer(text,"Credits/Font");
-      textRenderer.setText(k);
+      // Création du bouton
+      let myButton = new Sup.Actor("Button_"+indice,this.buttonsLocation);
+      myButton.setLocalPosition( new Sup.Math.Vector3( i*this.offset , 0 , 0 ) );
+      myButton.setLocalScale( new Sup.Math.Vector3( 2.5 , 2.5 , 1 ) );
       
-      instance["onAction"] = v;
+      // On applique le sprite au bouton!
+      let buttonSprite = new Sup.SpriteRenderer(myButton,skin);
+      let behavior = myButton.addBehavior(ButtonBehavior,{"focus_scale": vector.clone() });
+      this.storeButtons.push(behavior);
+      behavior["onAction"] = action;
+      
+      // Création du texte dans le bouton!
+      let myText = new Sup.Actor("Texte",myButton);
+      myText.setLocalPosition( new Sup.Math.Vector3( 0 , 0 , 0.5 ));
+      let textRndr = new Sup.TextRenderer(myText,indice,"Credits/Font");
+      textRndr.setSize(14);
       i++;
     }
     
+    
+    // On affiche la boîte de dialogue quand tout est bon!
+    this.isOpen = true;
+    this.selected = this.storeButtons.length-1;
     this.actor.setVisible(true);
   }
   
-  close() {
+  // Changement du texte d'une boîte de dialogue!
+  newText(text : string) {
+    
+  }
+       
+  close(dialogueName: string) {
+    this.storeButtons = [];
+    this.isOpen = false;
     this.actor.setVisible(false);
   }
 
   update() {
-    // Gérer action Skip
-    // Gérer action next
-    // Gérer action previous
+    
+    // On vérifie que la boite de dialogue est ouverte !
+    if(this.isOpen) {
+      
+      for(let k in this.storeButtons) {
+        this.storeButtons[k].unFocus();
+      }
+      
+      
+      let pressed = false;
+      
+      // On détecte si le joueur veut passer d'une touche à l'autre
+      if (Input.pressRight(0)) {
+        if(this.selected > 0) {
+          this.selected--;
+        }
+        else {
+          this.selected = (this.storeButtons.length-1);
+        }
+        pressed = true;
+      } else if (Input.pressLeft(0)) {
+        if(this.selected == (this.storeButtons.length-1)) {
+          this.selected = 0;
+        }
+        else {
+          this.selected++;
+        }
+        pressed = true;
+      }
+      
+      if(pressed)
+        Sup.log("pressed");
+        this.storeButtons[this.selected].onFocus();
+      
+      // Si le joueur éxecute une action sur notre menu !
+      if(Input.pressAction1(0)){
+        this.storeButtons[this.selected]["onAction"](this);
+      }
+    } 
+    
   }
 }
 Sup.registerBehavior(DialogueBehavior);

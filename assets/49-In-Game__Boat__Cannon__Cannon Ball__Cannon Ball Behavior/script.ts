@@ -1,13 +1,13 @@
 class CannonBallBehavior extends Sup.Behavior {
   velocity: Sup.Math.Vector3;
-  static speed = 1;
+  speed = 1.5;
   
   setup(position: Sup.Math.Vector3, angle: number) {
     this.actor.setPosition(position);
     this.actor.setEulerY(angle);
 
-    let cannonBallSpeed = CannonBallBehavior.speed;
-    let selfVelocity = new Sup.Math.Vector3(Math.sin(angle) * cannonBallSpeed, 0.3, Math.cos(angle) * cannonBallSpeed);
+    let cannonBallSpeed = this.speed;
+    let selfVelocity = new Sup.Math.Vector3(Math.sin(angle) * cannonBallSpeed, 0.3 , Math.cos(angle) * cannonBallSpeed);
     this.velocity = selfVelocity.add(Game.boatBehavior.speed);
   }
 

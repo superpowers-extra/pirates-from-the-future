@@ -27,8 +27,8 @@ class WorldMapBehavior extends Sup.Behavior {
 
   update() {
     this.marker.setEulerZ(Game.boatBehavior.angle - Math.PI / 2);
-    this.marker.setLocalX( Game.boatBehavior.position.x / Game.settings.chunkSize - Game.boatBehavior.offset.x + Game.settings.mapSize / 2 - 0);
-    this.marker.setLocalY(-Game.boatBehavior.position.z / Game.settings.chunkSize + Game.boatBehavior.offset.z + Game.settings.mapSize / 2 - 0);
+    this.marker.setLocalX( Game.boatBehavior.position.x / Game.settings.chunkSize - Game.boatBehavior.chunkOffset.x + Game.settings.mapSize / 2 - 0);
+    this.marker.setLocalY(-Game.boatBehavior.position.z / Game.settings.chunkSize + Game.boatBehavior.chunkOffset.z + Game.settings.mapSize / 2 - 0);
   }
 }
 Sup.registerBehavior(WorldMapBehavior);

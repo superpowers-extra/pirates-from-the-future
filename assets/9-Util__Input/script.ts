@@ -88,7 +88,7 @@ namespace Input {
         if (Sup.Input.isKeyDown("NUMPAD1")) return true;
         break;
     }
-    return Sup.Input.wasGamepadButtonJustPressed(index, 0);
+    return Sup.Input.isGamepadButtonDown(index, 0);
   }
   export function keyDownAction2(index: number) {
     switch (index) {
@@ -99,7 +99,7 @@ namespace Input {
         if (Sup.Input.isKeyDown("NUMPAD2")) return true;
         break;
     }
-    return Sup.Input.wasGamepadButtonJustPressed(index, 2);
+    return Sup.Input.isGamepadButtonDown(index, 2);
   }
 
   export function horizontal(index: number) {
@@ -183,6 +183,30 @@ namespace Input {
         break;
     }
     return Sup.Input.wasGamepadButtonJustPressed(index, 2);
+  }
+
+    
+  export function wasReleasedAction1(index: number) {
+    switch (index) {
+      case 0:
+        if (Sup.Input.wasKeyJustReleased("H")) return true;
+        break;
+      case 1:
+        if (Sup.Input.wasKeyJustReleased("NUMPAD1")) return true;
+        break;
+    }
+    return Sup.Input.wasGamepadButtonJustReleased(index, 0);
+  }
+  export function wasReleasedAction2(index: number) {
+    switch (index) {
+      case 0:
+        if (Sup.Input.wasKeyJustReleased("J")) return true;
+        break;
+      case 1:
+        if (Sup.Input.wasKeyJustReleased("NUMPAD2")) return true;
+        break;
+    }
+    return Sup.Input.wasGamepadButtonJustReleased(index, 2);
   }
     
   export function getTargetAngle(index: number) {

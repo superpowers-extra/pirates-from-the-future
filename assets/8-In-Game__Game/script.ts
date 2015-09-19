@@ -19,11 +19,13 @@ namespace Game {
   export let map: Chunk[][];
   export let chunkActors: Sup.Actor[];
   export let circleColliders: CircleColliderBehavior[];
+  export let onboardCircleColliders: CircleColliderBehavior[];
   
   export function start() {
     characterBehaviors = [];
     interactiveBehaviors = [];
     circleColliders = [];
+    onboardCircleColliders = [];
 
     Sup.loadScene("In-Game/Scene");
     let startPosition = generateWorld();

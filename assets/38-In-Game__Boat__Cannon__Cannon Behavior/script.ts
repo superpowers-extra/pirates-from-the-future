@@ -7,8 +7,18 @@ class CannonBehavior extends InteractiveBehavior {
   
   angleY: number;
   minAngleY: number;
-  maxAngleX: number;
-  maxRotationSpeed = 0.1;
+  maxAngleY: number;
+  maxRotationSpeed = 0.2;
+
+  chargeTimer: number;
+  chargeDuration: number;
+  chargeMultiplier: number;
+
+  isAttacking : boolean;
+  chargeAttack : boolean;
+
+  chargeFXActor : Sup.Actor;
+  
 
   awake(){
     super.awake();
@@ -17,7 +27,16 @@ class CannonBehavior extends InteractiveBehavior {
     
     this.angleY = this.actor.getLocalEulerY();
     this.minAngleY = this.angleY - Math.PI / 4;
-    this.maxAngleX = this.angleY + Math.PI / 4;
+    this.maxAngleY = this.angleY + Math.PI / 4;
+    
+    this.isAttacking = false;
+
+    this.chargeTimer = 0;
+    this.chargeDuration = 60;
+    this.chargeMultiplier = 1.2;
+    
+    this.chargeFXActor = Sup.getActor("chargeFx");
+    
     
   }
 
@@ -26,25 +45,55 @@ class CannonBehavior extends InteractiveBehavior {
       this.cooldown --;
     }
     
-    
     if (this.playerIndex != null) {
-      if (Input.pressAction2(this.playerIndex)){
-        if (this.cooldown == 0){
-          let cannonBall = Sup.appendScene("In-Game/Boat/Cannon/Cannon Ball/Prefab")[0];
-          cannonBall.getBehavior(CannonBallBehavior).setup(this.actor.getChild("Cannon Ball Spawn").getPosition(), this.actor.getEulerY() + Math.PI);
-          this.cooldown = this.cooldownDuration;
+      
+      // Move player with cannon
+      let trigger = this.actor.getChild("Trigger");
+      let targetPosition = trigger.getLocalPosition().rotate(this.actor.getLocalOrientation());
+      targetPosition.add(this.actor.getLocalPosition());
+      let characterBehavior = Game.characterBehaviors[this.playerIndex];
+      characterBehavior.setTarget(targetPosition, this.actor.getLocalEulerY() + Math.PI);
+      
+      
+      if (! this.isAttacking) {
+        if (Input.keyDownAction2(this.playerIndex) && this.cooldown == 0) {
+          this.isAttacking = true;
+          this.chargeTimer = 0;
+          // get Sprite d'attaque 
+          this.chargeFXActor.spriteRenderer.setSprite("In-Game/Boat/Cannon/Fx Charge");
         }
       }
+      else {
+        if (Input.wasReleasedAction2(this.playerIndex)) {
+          this.isAttacking = false;
+          // Jouer animation d'attaque
+          
 
-      let Yrotation = -Input.horizontal(this.playerIndex) * this.maxRotationSpeed;
-      this.angleY = Sup.Math.clamp(this.angleY + Yrotation, this.minAngleY, this.maxAngleX);
-      this.actor.setLocalEulerY(this.angleY);
-
-      let Xrotation = -Input.vertical(this.playerIndex) * this.maxRotationSpeed;
-      this.angleY = Sup.Math.clamp(this.angleY + Xrotation, this.minAngleY, this.maxAngleX);
-      this.actor.setLocalEulerY(this.angleY);
-
+          if (this.chargeTimer == this.chargeDuration) {
+            // Jouer animation de charge complète
+          }
+          let cannonBall = Sup.appendScene("In-Game/Boat/Cannon/Cannon Ball/Prefab")[0];
+          cannonBall.getBehavior(CannonBallBehavior).speed *= 0.5 + this.chargeMultiplier * this.chargeTimer*0.01;
+          cannonBall.getBehavior(CannonBallBehavior).setup(this.actor.getChild("Cannon Ball Spawn").getPosition(), this.actor.getEulerY() + Math.PI);
+        }
+        else {
+          this.chargeTimer = Math.min( this.chargeDuration, this.chargeTimer + 1 );
+          // Augmenter scale du Sprite
+        }
+      }
+      // Destroy le sprite si l'animation d'attaque est passée
     }
+    
+    
+    
+    
+    
+    if (this.playerIndex != null) {
+      let Yrotation = -Input.horizontal(this.playerIndex) * this.maxRotationSpeed;
+      this.angleY = Sup.Math.clamp(this.angleY + Yrotation, this.minAngleY, this.maxAngleY);
+      this.actor.setLocalEulerY(this.angleY);
+    }
+    
   }
   
   action(playerIndex: number) {
@@ -52,13 +101,13 @@ class CannonBehavior extends InteractiveBehavior {
   }
 
   control(index: number) {
-    if (index === this.playerIndex){
+    if (index === this.playerIndex) {
       this.playerIndex = null;
       Game.characterBehaviors[index].setState(CharacterState.Free);
-    }
-    else if (this.playerIndex == null) {
+    } else if (this.playerIndex == null) {
       this.playerIndex = index;
-      Game.characterBehaviors[index].setState(CharacterState.Cannon);
+      let characterBehavior = Game.characterBehaviors[index];
+      characterBehavior.setState(CharacterState.Cannon);
     }
   }
 }
