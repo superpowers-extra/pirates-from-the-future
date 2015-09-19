@@ -3,7 +3,7 @@ abstract class InteractiveBehavior extends Sup.Behavior {
   triggerPosition: Sup.Math.Vector3;
   markerPosition: Sup.Math.Vector3;
 
-  distance = 3;
+  distance = 4;
   
   awake() {
     Game.interactiveBehaviors.push(this);

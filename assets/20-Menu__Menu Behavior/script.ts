@@ -16,6 +16,7 @@ class MenuBehavior extends Sup.Behavior {
   }
 
   update() {
+    
     if (Input.pressLeft(0)) {
       if (this.buttonSelected > 0){
         this.buttonSelected --;
@@ -39,10 +40,13 @@ class MenuBehavior extends Sup.Behavior {
       
     if(Input.pressAction1(0)){
       if(this.buttons[this.buttonSelected].actor.getName() == "Sound"){
+        // Changer Sprite
         // Game.SoundVolume();
+      } else {
+        // Execute la méthode enregistrée dans l'attribut method des ButtonBehavior
+//         this.buttons[this.buttonSelected].method();
+        
       }
-      // Executer l'action du bouton
-      // On récupe l'action selon le nom du bouton ? 
     }
   }
 }
