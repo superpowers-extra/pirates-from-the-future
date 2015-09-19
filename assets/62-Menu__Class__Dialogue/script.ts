@@ -5,7 +5,7 @@ let Dialogues = {
       test : {
         skin : "Menu/TMP/Button1",
         action : (boiteDialogue) => {
-          Sup.log("v3");
+          boiteDialogue.open("test2")
         }
       },
       cancel : {
@@ -20,6 +20,16 @@ let Dialogues = {
       },
     }
   },
+  test2 : {
+    dialogue: "WAOUH il est trop beau ce jeu!",
+    buttons: {
+      test : {
+        skin : "Menu/TMP/Button1",
+        action : (boiteDialogue) => {
+        }
+      }
+    }
+  }
 }
 
 // Class gestion des dialogues ! 
@@ -43,8 +53,6 @@ class DialogueBehavior extends Sup.Behavior {
     this.dialogueLocation = this.actor.getChild("Dialogue");
     this.avatarLocation   = this.actor.getChild("Avatar")
     this.actor.setVisible(false);
-    
-    this.open("test1");
   }
 
   open(dialogueName: string) {
@@ -111,6 +119,10 @@ class DialogueBehavior extends Sup.Behavior {
   }
 
   update() {
+    
+    if(Sup.Input.wasKeyJustPressed("A")) {
+      this.open("test1");
+    }
     
     // On vérifie que la boite de dialogue est ouverte !
     if(this.isOpen) {

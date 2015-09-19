@@ -1,48 +1,34 @@
 let colliderPosition = new Sup.Math.Vector3();
 
 class BoatBehavior extends Sup.Behavior {
+  playerIndex: number;
   position: Sup.Math.Vector3;
   chunkOffset = { x: 0, z: 0 };
   angle: number;
 
-  acceleration = 0;
+  private acceleration = 0;
   static maxAcceleration = 0.02;
   speed = new Sup.Math.Vector3();
   static maxSpeed = 2;
   static speedDrag = 0.99;
 
-  rotationAcceleration = 0;
+  private rotationAcceleration = 0;
   static maxRotationAcceleration = 0.002;
-  rotationSpeed = 0;
+  private rotationSpeed = 0;
   static maxRotationSpeed = 0.03;
   static rotationSpeedDrag = 0.95;
 
   static radius = 30;
 
-  playerIndex: number;
+  private animationTimer = 0;
 
-  /*
-  private moveSpeed = 0;
-  static rotateMoveSpeed = 0.5;
-  static maxMoveSpeed = 1;// 0.5;
+  private reactorLeft: Sup.Actor;
+  private reactorRight: Sup.Actor;
+  private burstLeft: Sup.Actor;
+  private burstRight: Sup.Actor;
+  private particuleList: { actor: Sup.Actor, speed: Sup.Math.Vector3 }[] = [];
 
-  private rotateSpeed = 0;
-  static minRotateSpeed = 0.002;
-  static maxRotateSpeed = 0.015;
-  static minBreakAngle = 0.2;
-  */
-
-  animationTimer = 0;
-
-  reactorLeft: Sup.Actor;
-  reactorRight: Sup.Actor;
-  burstLeft: Sup.Actor;
-  burstRight: Sup.Actor;
-  particuleList: { actor: Sup.Actor, speed: Sup.Math.Vector3 }[] = [];
-
-  splashRndr: Sup.ModelRenderer;
-
-  //FACTOR ENTRE 0 ET 1
+  private splashRndr: Sup.ModelRenderer;
   
   awake() {
     Game.boatBehavior = this;
@@ -98,21 +84,16 @@ class BoatBehavior extends Sup.Behavior {
       let penetration = (collider.radius + BoatBehavior.radius) - diff.length();
       if (penetration > 0) {
         if (speedLength > 1.5) {
-          Game.cameraBehavior.shake();
+          Game.cameraBehavior.shake(1, 30);
           this.speed.subtract(diff);
-          //this.speed.subtract(diff.normalize().multiplyScalar(-penetration / 10));
-          //this.speed.multiplyScalar(-0.2);
-        } {
-        
+        } else {
           let oldPosition = this.position.clone();
           this.position.add(diff.normalize().multiplyScalar(-penetration));
           this.speed.subtract(diff.normalize().multiplyScalar(-penetration));
-          //this.speed.copy(this.position).subtract(oldPosition);
-          if (Sup.Input.isKeyDown("SPACE")) Sup.log(this.speed);
         }
-        
       }
     }
+    if (speedLength > BoatBehavior.maxSpeed * 0.8 && targetAcceleration !== 0) Game.cameraBehavior.shake(0.3, 1);
     
     // Map edge teleportation
     if (this.position.x / Game.settings.chunkSize - this.chunkOffset.x > Game.settings.mapSize / 2) {
@@ -153,7 +134,7 @@ class BoatBehavior extends Sup.Behavior {
     this.burstRight.setLocalScale(scaleRight, scaleRight, 1);
     
     // Particules && splash
-    if (speedLength > 0.4 * BoatBehavior.maxSpeed && targetAcceleration !== 0) {
+    if (speedLength > 0.6 * BoatBehavior.maxSpeed && targetAcceleration !== 0) {
       let direction = new Sup.Math.Vector3(Math.sin(this.angle), 0, Math.cos(this.angle));
       
       let particuleLeftActor = new Sup.Actor("Particule");
@@ -170,11 +151,13 @@ class BoatBehavior extends Sup.Behavior {
       this.particuleList.push({ actor: particuleRightActor, speed: direction.clone().multiplyScalar(-12) }); 
     }
     
-    //if (Sup.Input.isKeyDown("SPACE")) Sup.log(speedLength / BoatBehavior.maxSpeed);
     this.splashRndr.getUniforms()["factor"].value = speedLength / BoatBehavior.maxSpeed;
+    //this.splashRndr.getUniforms()["factor"].value = this.rotationSpeed / BoatBehavior.maxRotationSpeed;
     
     let speedAngle = Math.atan2(this.speed.x, this.speed.z);
-    this.splashRndr.getUniforms()["moveDirection"].value = Sup.Math.clamp(Sup.Math.wrapAngle(speedAngle - this.angle), -1, 1);
+    if (Sup.Input.isKeyDown("SPACE")) Sup.log(Sup.Math.clamp(Sup.Math.wrapAngle(speedAngle - this.angle), -1, 1));
+    //this.splashRndr.getUniforms()["moveDirection"].value = Sup.Math.clamp(Sup.Math.wrapAngle(speedAngle - this.angle), -1, 1);
+    this.splashRndr.getUniforms()["moveDirection"].value = -this.rotationSpeed / BoatBehavior.maxRotationSpeed;
     
     while (this.particuleList[0] != null && !this.particuleList[0].actor.spriteRenderer.isAnimationPlaying()) {
       this.particuleList[0].actor.destroy();
@@ -189,7 +172,7 @@ class BoatBehavior extends Sup.Behavior {
       let scale = Math.max(1, speedLength / 2);
       particule.actor.setLocalScale(1, scale, 1);
       
-      if (speedLength < 4) particule.actor.moveOrientedX(Sup.Math.Random.float(-0.1, 0.1));
+      if (speedLength < 4) particule.actor.moveOrientedX(Sup.Math.Random.float(-0.15, 0.15));
     }
   }
 

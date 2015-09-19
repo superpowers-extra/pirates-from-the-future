@@ -6,11 +6,11 @@ class CameraBehavior extends Sup.Behavior {
   private lightOffset: Sup.Math.Vector3;
   private lightTargetOffset: Sup.Math.Vector3;
 
-  water: Sup.Actor;
-  light: Sup.Light;
+  private water: Sup.Actor;
+  private light: Sup.Light;
 
   private shakeTimer = 0;
-  static shakeDelay = 30;
+  private shakeAmplitude: number;
   
   awake() {
     Game.cameraBehavior = this;
@@ -30,10 +30,11 @@ class CameraBehavior extends Sup.Behavior {
     this.actor.setLocalPosition(this.position);
   }
 
-  shake() {
+  shake(amplitude: number, duration: number) {
     if (this.shakeTimer > 0) return;
-    Sup.log("shake");
-    this.shakeTimer = CameraBehavior.shakeDelay;
+    
+    this.shakeTimer = duration;
+    this.shakeAmplitude = amplitude;
   }
 
   update() {
@@ -53,8 +54,7 @@ class CameraBehavior extends Sup.Behavior {
     
     if (this.shakeTimer > 0) {
       this.shakeTimer -= 1;
-      let limit = 1;
-      this.actor.moveLocal(Sup.Math.Random.float(-limit, limit), Sup.Math.Random.float(-limit, limit), 0);
+      this.actor.moveLocal(Sup.Math.Random.float(-this.shakeAmplitude, this.shakeAmplitude), Sup.Math.Random.float(-this.shakeAmplitude, this.shakeAmplitude), 0);
     }
     
     // TMP DEBUG

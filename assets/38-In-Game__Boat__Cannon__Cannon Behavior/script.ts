@@ -8,7 +8,7 @@ class CannonBehavior extends InteractiveBehavior {
   angleY: number;
   minAngleY: number;
   maxAngleY: number;
-  maxRotationSpeed = 0.2;
+  maxRotationSpeed = 0.05;
 
   chargeTimer: number;
   chargeDuration: number;
@@ -23,7 +23,7 @@ class CannonBehavior extends InteractiveBehavior {
   awake(){
     super.awake();
     this.cooldown = 0;
-    this.cooldownDuration = 20;
+    this.cooldownDuration = 30;
     
     this.angleY = this.actor.getLocalEulerY();
     this.minAngleY = this.angleY - Math.PI / 4;
@@ -35,8 +35,8 @@ class CannonBehavior extends InteractiveBehavior {
     this.chargeDuration = 60;
     this.chargeMultiplier = 1.2;
     
-    this.chargeFXActor = Sup.getActor("chargeFx");
-    
+    this.chargeFXActor = new Sup.Actor("Fx Charge", this.actor);
+    this.chargeFXActor.setLocalPosition(this.actor.getChild("Cannon Ball Spawn").getLocalPosition());
     
   }
 
@@ -52,24 +52,30 @@ class CannonBehavior extends InteractiveBehavior {
       let targetPosition = trigger.getLocalPosition().rotate(this.actor.getLocalOrientation());
       targetPosition.add(this.actor.getLocalPosition());
       let characterBehavior = Game.characterBehaviors[this.playerIndex];
+      targetPosition.y = characterBehavior.position.y;
       characterBehavior.setTarget(targetPosition, this.actor.getLocalEulerY() + Math.PI);
+      
+      let Yrotation = -Input.horizontal(this.playerIndex) * this.maxRotationSpeed;
+      this.angleY = Sup.Math.clamp(this.angleY + Yrotation, this.minAngleY, this.maxAngleY);
+      this.actor.setLocalEulerY(this.angleY); 
       
       
       if (! this.isAttacking) {
         if (Input.keyDownAction2(this.playerIndex) && this.cooldown == 0) {
           this.isAttacking = true;
           this.chargeTimer = 0;
-          // get Sprite d'attaque 
-          this.chargeFXActor.spriteRenderer.setSprite("In-Game/Boat/Cannon/Fx Charge");
+          this.chargeFXActor.spriteRenderer = new Sup.SpriteRenderer(this.chargeFXActor, "In-Game/Boat/Cannon/Fx Charge");
+          this.chargeFXActor.spriteRenderer.setAnimation("Charge");
         }
       }
       else {
-        if (Input.wasReleasedAction2(this.playerIndex)) {
+        if (Input.wasReleasedAction2(this.playerIndex) && this.cooldown == 0) {
           this.isAttacking = false;
-          // Jouer animation d'attaque
-          
+            // Play Sprite explosion          
 
           if (this.chargeTimer == this.chargeDuration) {
+            this.chargeFXActor.setLocalScale( new Sup.Math.Vector3(1, 1, 1) );
+//             this.chargeFXActor.spriteRenderer.setAnimation("Explose", false);
             // Jouer animation de charge complète
           }
           let cannonBall = Sup.appendScene("In-Game/Boat/Cannon/Cannon Ball/Prefab")[0];
@@ -78,22 +84,15 @@ class CannonBehavior extends InteractiveBehavior {
         }
         else {
           this.chargeTimer = Math.min( this.chargeDuration, this.chargeTimer + 1 );
-          // Augmenter scale du Sprite
+        
+          if (this.chargeTimer == 10) {
+            this.chargeFXActor.setLocalScale(new Sup.Math.Vector3(1,1,1));
+            this.chargeFXActor.spriteRenderer.setAnimation("Charge", false);
+          }
         }
       }
       // Destroy le sprite si l'animation d'attaque est passée
-    }
-    
-    
-    
-    
-    
-    if (this.playerIndex != null) {
-      let Yrotation = -Input.horizontal(this.playerIndex) * this.maxRotationSpeed;
-      this.angleY = Sup.Math.clamp(this.angleY + Yrotation, this.minAngleY, this.maxAngleY);
-      this.actor.setLocalEulerY(this.angleY);
-    }
-    
+    }   
   }
   
   action(playerIndex: number) {
