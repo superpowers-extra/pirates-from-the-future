@@ -1,0 +1,135 @@
+{
+  "behaviors": {
+    "BoatBehavior": {
+      "scriptId": "4",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "position",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "angle",
+          "type": "number"
+        },
+        {
+          "name": "playerIndex",
+          "type": "number"
+        },
+        {
+          "name": "wheelPosition",
+          "type": "Sup.Math.Vector3"
+        }
+      ]
+    },
+    "CameraBehavior": {
+      "scriptId": "7",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "CharacterBehavior": {
+      "scriptId": "16",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "index",
+          "type": "number"
+        },
+        {
+          "name": "position",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "angle",
+          "type": "number"
+        },
+        {
+          "name": "interactiveY",
+          "type": "number"
+        },
+        {
+          "name": "interactiveTimer",
+          "type": "number"
+        }
+      ]
+    },
+    "InteractiveBehavior": {
+      "scriptId": "33",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "position",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "triggerPosition",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "markerPosition",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "distance",
+          "type": "number"
+        }
+      ]
+    },
+    "WheelBehavior": {
+      "scriptId": "34",
+      "parentBehavior": "InteractiveBehavior",
+      "properties": []
+    },
+    "MenuBehavior": {
+      "scriptId": "20",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "CannonBehavior": {
+      "scriptId": "38",
+      "parentBehavior": "InteractiveBehavior",
+      "properties": []
+    },
+    "ButtonBehavior": {
+      "scriptId": "40",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "focus_scale",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "focus_sprite",
+          "type": "string"
+        }
+      ]
+    },
+    "CannonBallBehavior": {
+      "scriptId": "49",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "TextEffectBehavior": {
+      "scriptId": "54",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "name": "textShowSpeed",
+          "type": "number"
+        },
+        {
+          "name": "started",
+          "type": "boolean"
+        },
+        {
+          "name": "defaultText",
+          "type": "string"
+        }
+      ]
+    }
+  }
+}

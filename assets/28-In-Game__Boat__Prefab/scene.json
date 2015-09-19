@@ -1,0 +1,205 @@
+{
+  "nodes": [
+    {
+      "id": "0",
+      "name": "Boat",
+      "children": [
+        {
+          "id": "1",
+          "name": "Model",
+          "children": [],
+          "components": [
+            {
+              "type": "ModelRenderer",
+              "config": {
+                "modelAssetId": "6",
+                "animationId": null,
+                "castShadow": false,
+                "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
+                "materialType": "phong",
+                "shaderAssetId": null
+              },
+              "id": "0"
+            }
+          ],
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 10
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 12,
+            "y": 12,
+            "z": 12
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        },
+        {
+          "id": "2",
+          "name": "Wheel",
+          "children": [
+            {
+              "id": "8",
+              "name": "Trigger",
+              "children": [],
+              "components": [],
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": -3
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            }
+          ],
+          "components": [
+            {
+              "type": "ModelRenderer",
+              "config": {
+                "modelAssetId": "30",
+                "animationId": null,
+                "castShadow": false,
+                "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
+                "materialType": "basic",
+                "shaderAssetId": null
+              },
+              "id": "0"
+            },
+            {
+              "type": "Behavior",
+              "config": {
+                "behaviorName": "WheelBehavior",
+                "propertyValues": {}
+              },
+              "id": "1"
+            }
+          ],
+          "position": {
+            "x": 0,
+            "y": 11.5,
+            "z": -14
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        },
+        {
+          "id": "6",
+          "name": "Cannon",
+          "children": [],
+          "components": [],
+          "position": {
+            "x": 0,
+            "y": 14,
+            "z": 51
+          },
+          "orientation": {
+            "x": 0,
+            "y": 1,
+            "z": 0,
+            "w": 6.123234262925839e-17
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": "39"
+        },
+        {
+          "id": "7",
+          "name": "Cannon 2",
+          "children": [],
+          "components": [],
+          "position": {
+            "x": -12.29954719543457,
+            "y": 11.387288093566895,
+            "z": 30.177093505859375
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0.8463848909007372,
+            "z": 0,
+            "w": 0.5325716912002825
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": "39"
+        }
+      ],
+      "components": [
+        {
+          "type": "Behavior",
+          "config": {
+            "behaviorName": "BoatBehavior",
+            "propertyValues": {}
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    }
+  ]
+}

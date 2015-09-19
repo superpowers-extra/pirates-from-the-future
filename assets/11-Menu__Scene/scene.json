@@ -1,0 +1,375 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Camera",
+      "children": [],
+      "components": [
+        {
+          "type": "Camera",
+          "config": {
+            "mode": "orthographic",
+            "fov": 45,
+            "orthographicScale": 10,
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 1,
+              "height": 1
+            },
+            "depth": 0,
+            "nearClippingPlane": 0.1,
+            "farClippingPlane": 1000
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    },
+    {
+      "id": "3",
+      "name": "Menu",
+      "children": [
+        {
+          "id": "6",
+          "name": "Buttons",
+          "children": [
+            {
+              "id": "2",
+              "name": "soloPlayer",
+              "children": [],
+              "components": [
+                {
+                  "type": "SpriteRenderer",
+                  "config": {
+                    "spriteAssetId": "24",
+                    "animationId": null,
+                    "horizontalFlip": false,
+                    "verticalFlip": false,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "basic",
+                    "shaderAssetId": null
+                  },
+                  "id": "1"
+                },
+                {
+                  "type": "Behavior",
+                  "config": {
+                    "behaviorName": "ButtonBehavior",
+                    "propertyValues": {
+                      "focus_scale": {
+                        "type": "Sup.Math.Vector3",
+                        "value": {
+                          "x": 0.5,
+                          "y": 0.5,
+                          "z": 0
+                        }
+                      }
+                    }
+                  },
+                  "id": "3"
+                }
+              ],
+              "position": {
+                "x": -5,
+                "y": -1.5,
+                "z": -13
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 3,
+                "y": 3,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "4",
+              "name": "multiPlayer",
+              "children": [],
+              "components": [
+                {
+                  "type": "SpriteRenderer",
+                  "config": {
+                    "spriteAssetId": "25",
+                    "animationId": null,
+                    "horizontalFlip": false,
+                    "verticalFlip": false,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "basic",
+                    "shaderAssetId": null
+                  },
+                  "id": "0"
+                },
+                {
+                  "type": "Behavior",
+                  "config": {
+                    "behaviorName": "ButtonBehavior",
+                    "propertyValues": {
+                      "focus_scale": {
+                        "type": "Sup.Math.Vector3",
+                        "value": {
+                          "x": 0.5,
+                          "y": 0.5,
+                          "z": 0
+                        }
+                      }
+                    }
+                  },
+                  "id": "2"
+                }
+              ],
+              "position": {
+                "x": 5,
+                "y": -1.5,
+                "z": -13
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 3,
+                "y": 3,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "7",
+              "name": "Sound",
+              "children": [],
+              "components": [
+                {
+                  "type": "Behavior",
+                  "config": {
+                    "behaviorName": "ButtonBehavior",
+                    "propertyValues": {
+                      "focus_scale": {
+                        "type": "Sup.Math.Vector3",
+                        "value": {
+                          "x": 0.5,
+                          "y": 0.5,
+                          "z": 0
+                        }
+                      }
+                    }
+                  },
+                  "id": "0"
+                },
+                {
+                  "type": "SpriteRenderer",
+                  "config": {
+                    "spriteAssetId": "53",
+                    "animationId": null,
+                    "horizontalFlip": false,
+                    "verticalFlip": false,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "basic",
+                    "shaderAssetId": null
+                  },
+                  "id": "1"
+                }
+              ],
+              "position": {
+                "x": 7.135384559631348,
+                "y": 4.869452953338623,
+                "z": -13
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            }
+          ],
+          "components": [],
+          "position": {
+            "x": 0,
+            "y": -1.5,
+            "z": 0
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        }
+      ],
+      "components": [
+        {
+          "type": "Behavior",
+          "config": {
+            "behaviorName": "MenuBehavior",
+            "propertyValues": {}
+          },
+          "id": "1"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    },
+    {
+      "id": "5",
+      "name": "Logo",
+      "children": [],
+      "components": [
+        {
+          "type": "SpriteRenderer",
+          "config": {
+            "spriteAssetId": "23",
+            "animationId": null,
+            "horizontalFlip": false,
+            "verticalFlip": false,
+            "castShadow": false,
+            "receiveShadow": false,
+            "color": "ffffff",
+            "overrideOpacity": false,
+            "opacity": null,
+            "materialType": "basic",
+            "shaderAssetId": null
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": -15
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    },
+    {
+      "id": "8",
+      "name": "testEffect",
+      "children": [],
+      "components": [
+        {
+          "type": "Behavior",
+          "config": {
+            "behaviorName": "TextEffectBehavior",
+            "propertyValues": {
+              "text": {
+                "type": "string",
+                "value": "Yop les potes !"
+              },
+              "started": {
+                "type": "boolean",
+                "value": true
+              }
+            }
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": 1.0676922798156738,
+        "y": 0.18472647666931152,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    }
+  ]
+}

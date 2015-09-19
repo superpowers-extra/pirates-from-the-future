@@ -1,0 +1,23 @@
+{
+  "unitRatio": 10,
+  "upAxisMatrix": null,
+  "attributes": [
+    "position",
+    "uv",
+    "normal"
+  ],
+  "bones": null,
+  "maps": [
+    "displace"
+  ],
+  "animations": [],
+  "opacity": null,
+  "advancedTextures": true,
+  "mapSlots": {
+    "map": null,
+    "light": null,
+    "specular": null,
+    "alpha": null,
+    "normal": null
+  }
+}

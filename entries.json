@@ -1,0 +1,277 @@
+[
+  {
+    "id": "0",
+    "name": "README",
+    "type": "script"
+  },
+  {
+    "id": "9",
+    "name": "Input",
+    "type": "script"
+  },
+  {
+    "id": "2",
+    "name": "In-Game",
+    "type": null,
+    "children": [
+      {
+        "id": "8",
+        "name": "Game",
+        "type": "script"
+      },
+      {
+        "id": "1",
+        "name": "Scene",
+        "type": "scene"
+      },
+      {
+        "id": "3",
+        "name": "Water TMP",
+        "type": "sprite"
+      },
+      {
+        "id": "7",
+        "name": "Camera Behavior",
+        "type": "script"
+      },
+      {
+        "id": "33",
+        "name": "Interactive Behavior",
+        "type": "script"
+      },
+      {
+        "id": "14",
+        "name": "Characters",
+        "type": null,
+        "children": [
+          {
+            "id": "15",
+            "name": "Prefab",
+            "type": "scene"
+          },
+          {
+            "id": "16",
+            "name": "Character Behavior",
+            "type": "script"
+          },
+          {
+            "id": "12",
+            "name": "Character 1",
+            "type": "model"
+          },
+          {
+            "id": "13",
+            "name": "Character 2",
+            "type": "model"
+          },
+          {
+            "id": "32",
+            "name": "Interactive Marker",
+            "type": "model"
+          }
+        ]
+      },
+      {
+        "id": "5",
+        "name": "Boat",
+        "type": null,
+        "children": [
+          {
+            "id": "28",
+            "name": "Prefab",
+            "type": "scene"
+          },
+          {
+            "id": "4",
+            "name": "Boat Behavior",
+            "type": "script"
+          },
+          {
+            "id": "6",
+            "name": "Model",
+            "type": "model"
+          },
+          {
+            "id": "34",
+            "name": "Wheel Behavior",
+            "type": "script"
+          },
+          {
+            "id": "30",
+            "name": "Wheel",
+            "type": "model"
+          },
+          {
+            "id": "35",
+            "name": "Cannon",
+            "type": null,
+            "children": [
+              {
+                "id": "39",
+                "name": "Prefab",
+                "type": "scene"
+              },
+              {
+                "id": "38",
+                "name": "Cannon Behavior",
+                "type": "script"
+              },
+              {
+                "id": "36",
+                "name": "Cannon",
+                "type": "model"
+              },
+              {
+                "id": "37",
+                "name": "Support",
+                "type": "model"
+              },
+              {
+                "id": "47",
+                "name": "Cannon Ball",
+                "type": null,
+                "children": [
+                  {
+                    "id": "48",
+                    "name": "Prefab",
+                    "type": "scene"
+                  },
+                  {
+                    "id": "49",
+                    "name": "Cannon Ball Behavior",
+                    "type": "script"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "17",
+        "name": "Water",
+        "type": null,
+        "children": [
+          {
+            "id": "27",
+            "name": "WaterTest",
+            "type": "scene"
+          },
+          {
+            "id": "18",
+            "name": "Water",
+            "type": "model"
+          },
+          {
+            "id": "26",
+            "name": "WaterShader",
+            "type": "shader"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "name": "Menu",
+    "type": null,
+    "children": [
+      {
+        "id": "11",
+        "name": "Scene",
+        "type": "scene"
+      },
+      {
+        "id": "20",
+        "name": "Menu Behavior",
+        "type": "script"
+      },
+      {
+        "id": "40",
+        "name": "Button",
+        "type": "script"
+      },
+      {
+        "id": "54",
+        "name": "TextEffect",
+        "type": "script"
+      },
+      {
+        "id": "22",
+        "name": "TMP",
+        "type": null,
+        "children": [
+          {
+            "id": "23",
+            "name": "Logo",
+            "type": "sprite"
+          },
+          {
+            "id": "24",
+            "name": "Button1",
+            "type": "sprite"
+          },
+          {
+            "id": "25",
+            "name": "Button2",
+            "type": "sprite"
+          },
+          {
+            "id": "53",
+            "name": "SoundOn",
+            "type": "sprite"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "name": "Start",
+    "type": "script"
+  },
+  {
+    "id": "42",
+    "name": "Chunk",
+    "type": null,
+    "children": [
+      {
+        "id": "43",
+        "name": "Scenes Prefab",
+        "type": null,
+        "children": [
+          {
+            "id": "50",
+            "name": "Islands",
+            "type": null,
+            "children": []
+          },
+          {
+            "id": "51",
+            "name": "Sea",
+            "type": null,
+            "children": []
+          },
+          {
+            "id": "52",
+            "name": "MonsterIslands",
+            "type": null,
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "44",
+        "name": "Generator",
+        "type": null,
+        "children": [
+          {
+            "id": "46",
+            "name": "Chunk Generator",
+            "type": "script"
+          }
+        ]
+      }
+    ]
+  }
+]
