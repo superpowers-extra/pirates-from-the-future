@@ -12,6 +12,7 @@ namespace Game {
   
   export let cameraBehavior: CameraBehavior;
   export let boatBehavior: BoatBehavior;
+  export let octopusBehavior: OctopusBehavior;
   
   export let characterBehaviors: CharacterBehavior[];
   export let interactiveBehaviors: InteractiveBehavior[]; 
@@ -21,11 +22,18 @@ namespace Game {
   export let circleColliders: CircleColliderBehavior[];
   export let onboardCircleColliders: CircleColliderBehavior[];
   
+  export let damageables: DamageableBehavior[];
+  export let onboardDamageables: DamageableBehavior[];
+  
   export function start() {
     characterBehaviors = [];
     interactiveBehaviors = [];
+    
     circleColliders = [];
     onboardCircleColliders = [];
+    
+    damageables = [];
+    onboardDamageables = [];
 
     Sup.loadScene("In-Game/Scene");
     let startPosition = generateWorld();

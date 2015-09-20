@@ -12,15 +12,7 @@ class WorldMapBehavior extends Sup.Behavior {
     for (let x = 0; x < Game.settings.mapSize; x++) {
       for (let z = 0; z < Game.settings.mapSize; z++) {
         let chunk = Game.map[x][z];
-        
-        switch (chunk.type) {
-          case "sea":
-            this.map.setTileAt(0, x, z, 0);
-            break;
-          case "island":
-            this.map.setTileAt(0, x, z, chunk.index === 0 ? 1 : 2);
-            break;
-        }
+        if (chunk.type === "island") this.map.setTileAt(0, x, z, chunk.index === 0 ? 1 : 2);
       }
     }
   }

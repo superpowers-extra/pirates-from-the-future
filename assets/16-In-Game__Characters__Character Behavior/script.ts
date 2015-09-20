@@ -18,10 +18,13 @@ class CharacterBehavior extends Sup.Behavior {
 
   weaponActor: Sup.Actor;
   weaponTween: Sup.Tween;
+  weaponRange = 5;
 
   interactiveActor: Sup.Actor;
   interactiveY: number;
   interactiveTimer = 0;
+
+  hasStruck = false;
 
   awake() { Game.characterBehaviors.push(this); }
   
@@ -130,14 +133,35 @@ class CharacterBehavior extends Sup.Behavior {
       this.actor.setLocalPosition(this.position);
     }
     
+    // Attack
     if (Input.pressAction2(this.index) && this.weaponTween == null) {
-      this.weaponTween = new Sup.Tween(this.weaponActor, { angle: 0 })
-        .to({ angle: Math.PI / 2 }, 200)
+      this.hasStruck = false;
+      
+      this.weaponTween = new Sup.Tween(this.weaponActor, { angle: 0, progress: 0 })
+        .to({ angle: Math.PI / 2, progress: 1 }, 200)
         .yoyo(true)
         .repeat(1)
-        .onUpdate((object) => { this.weaponActor.setLocalEulerZ(object.angle); })
-        .onComplete(() => { this.weaponTween = null; })
+        .onUpdate((object) => {
+          this.weaponActor.setLocalEulerZ(object.angle);
+          
+          if (object.progress > 0.5 && !this.hasStruck) {
+            this.hasStruck = true;
+            this.dealDamage();
+          }
+        
+        }).onComplete(() => { this.weaponTween = null; })
         .start();
+    }
+  }
+
+  private dealDamage() {
+    for (let damageable of Game.onboardDamageables) {
+      let diff = damageable.actor.getLocalPosition().subtract(this.position);
+      let angle = Math.atan2(diff.x, diff.z);
+      
+      if (diff.length() < damageable.radius + this.weaponRange && Math.abs(Sup.Math.wrapAngle(angle - this.angle)) < Math.PI / 3) {
+        damageable.takeDamage(10);
+      }
     }
   }
 

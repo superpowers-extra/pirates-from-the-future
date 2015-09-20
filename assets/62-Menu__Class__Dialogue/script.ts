@@ -1,37 +1,3 @@
-let Dialogues = {
-  test1 : {
-    dialogue: "salut les gars ça va bien ?!\nGOGO LES MECS!",
-    buttons: {
-      test : {
-        skin : "Menu/TMP/Button1",
-        action : (boiteDialogue) => {
-          boiteDialogue.open("test2")
-        }
-      },
-      cancel : {
-        action : (boiteDialogue) => {
-          Sup.log("v2");
-        }
-      },
-      accepter : {
-        action : (boiteDialogue) => {
-          Sup.log("v1");
-        }
-      },
-    }
-  },
-  test2 : {
-    dialogue: "WAOUH il est trop beau ce jeu!",
-    buttons: {
-      test : {
-        skin : "Menu/TMP/Button1",
-        action : (boiteDialogue) => {
-        }
-      }
-    }
-  }
-}
-
 // Class gestion des dialogues ! 
 class DialogueBehavior extends Sup.Behavior {
   
@@ -41,6 +7,7 @@ class DialogueBehavior extends Sup.Behavior {
   private buttonsLocation   : Sup.Actor;
   private dialogueLocation  : Sup.Actor;
   private avatarLocation    : Sup.Actor;
+  private nomPersonnageLocation : Sup.Actor;
 
   // Storage buttons instance (permettera d'effectuer des actions précise sur nos boutons!)
   public storeButtons = [];
@@ -52,6 +19,7 @@ class DialogueBehavior extends Sup.Behavior {
     this.buttonsLocation  = this.actor.getChild("Buttons");
     this.dialogueLocation = this.actor.getChild("Dialogue");
     this.avatarLocation   = this.actor.getChild("Avatar")
+    this.nomPersonnageLocation = this.actor.getChild("NomPersonnage");
     this.actor.setVisible(false);
   }
 
@@ -61,9 +29,17 @@ class DialogueBehavior extends Sup.Behavior {
     
     // On applique le texte a notre fenêtre dialogue.
     //this.dialogueLocation.textRenderer.setText(conf.dialogue);
-    this.dialogueLocation.addBehavior(TextBehavior,{"text":conf.dialogue,"textShowSpeed":"0.03"});
+    this.dialogueLocation.addBehavior(TextBehavior,{"text":conf.dialogue,"textShowSpeed":"0.019"});
     
     // Set Sprite for avatar
+    
+    //
+    if(conf.nomPersonnage != undefined) {
+      this.nomPersonnageLocation.textRenderer.setText(conf.nomPersonnage);
+    }
+    else {
+      this.nomPersonnageLocation.setVisible(false);
+    }
     
     // Destroy all buttons 
     let buttonsChildren = this.buttonsLocation.getChildren();
@@ -106,11 +82,6 @@ class DialogueBehavior extends Sup.Behavior {
     this.selected = this.storeButtons.length-1;
     this.actor.setVisible(true);
   }
-  
-  // Changement du texte d'une boîte de dialogue!
-  newText(text : string) {
-    
-  }
        
   close(dialogueName: string) {
     this.storeButtons = [];
@@ -121,11 +92,12 @@ class DialogueBehavior extends Sup.Behavior {
   update() {
     
     if(Sup.Input.wasKeyJustPressed("A")) {
-      this.open("test1");
+      this.open("marchandDialogue");
     }
     
     // On vérifie que la boite de dialogue est ouverte !
     if(this.isOpen) {
+     
       
       for(let k in this.storeButtons) {
         this.storeButtons[k].unFocus();
@@ -159,6 +131,7 @@ class DialogueBehavior extends Sup.Behavior {
       
       // Si le joueur éxecute une action sur notre menu !
       if(Input.pressAction1(0)){
+        //this.dialogueLocation.getBehavior(TextBehavior).end();
         this.storeButtons[this.selected]["onAction"](this);
       }
     } 

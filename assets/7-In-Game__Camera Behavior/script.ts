@@ -1,5 +1,6 @@
 class CameraBehavior extends Sup.Behavior {
   position = new Sup.Math.Vector3();
+  targetPosition = new Sup.Math.Vector3();
   
   private offset: Sup.Math.Vector3;
   private waterOffset: Sup.Math.Vector3;
@@ -11,12 +12,18 @@ class CameraBehavior extends Sup.Behavior {
 
   private shakeTimer = 0;
   private shakeAmplitude: number;
+
+  private trackingBoss = false;
+
+  static defaultLerpFactor = 0.15;
+  static bossLerpFactor = 0.05;
+  private lerpFactor = CameraBehavior.defaultLerpFactor;
   
   awake() {
     Game.cameraBehavior = this;
 
-    this.water = this.actor.getChild("Water");
-    this.waterOffset = this.water.getPosition().subtract(this.actor.getPosition());
+    this.water = Sup.getActor("Water");
+    //this.waterOffset = this.water.getPosition().subtract(this.actor.getPosition());
 
     this.light = Sup.getActor("Directional Light").light;
     this.lightOffset = this.light.actor.getPosition().subtract(this.actor.getPosition());
@@ -37,14 +44,27 @@ class CameraBehavior extends Sup.Behavior {
     this.shakeAmplitude = amplitude;
   }
 
+  trackBoss(trackingBoss: boolean) {
+    this.trackingBoss = trackingBoss;
+    this.lerpFactor = CameraBehavior.bossLerpFactor;
+  }
+
   update() {
-    this.position.copy(Game.boatBehavior.position).add(this.offset);
+    if (!this.trackingBoss) {
+      this.targetPosition.copy(Game.boatBehavior.position).add(this.offset);
+      this.lerpFactor = Sup.Math.lerp(this.lerpFactor, CameraBehavior.defaultLerpFactor, 0.15);
+    } else {
+      // TODO: APPLY MAP OFFSET
+      this.targetPosition.copy(this.offset).multiplyScalar(1.5).add(Game.boatBehavior.chunkOffset.x * Game.settings.chunkSize, 0, Game.boatBehavior.chunkOffset.z * Game.settings.chunkSize);
+    }
+    
+    this.position.lerp(this.targetPosition, this.lerpFactor);
     this.actor.setLocalPosition(this.position);
     
-    let waterPosition = this.actor.getLocalPosition().add(this.waterOffset);
-    waterPosition.x = Math.round(waterPosition.x);
-    waterPosition.z = Math.round(waterPosition.z);
-    this.water.setPosition(waterPosition);
+    let ray = new Sup.Math.Ray();
+    let plane = new Sup.Math.Plane(new Sup.Math.Vector3(0, 1, 0), 0);
+    ray.setFromCamera(this.actor.camera, { x: 0, y: 0});
+    this.water.setPosition(ray.intersectPlane(plane).point);
     
     let lightPos = this.actor.getLocalPosition().add(this.lightOffset);
     this.light.actor.setPosition(lightPos);

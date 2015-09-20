@@ -11,7 +11,7 @@ class CircleColliderBehavior extends Sup.Behavior {
   }
 
   start() {
-    this.position = this.actor.getLocalPosition();
+    this.position = this.onboard ? this.actor.getLocalPosition() : this.actor.getPosition();
   }
 
   onDestroy() {

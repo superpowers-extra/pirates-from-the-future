@@ -55,7 +55,7 @@ function generateWorld() {
       let chunk = Game.map[x][z];
       if (chunk.type === "sea") continue;
       
-      let rootActor = Sup.appendScene(`In-Game/Chunks/Prefabs/${prefabs[chunk.type][chunk.index]}`)[0];
+      let rootActor = Sup.appendScene(`In-Game/Chunks/${prefabs[chunk.type][chunk.index]}`)[0];
       let worldX = (chunk.x - Game.settings.mapSize / 2 + 0.5) * Game.settings.chunkSize;
       let worldZ = -(chunk.z - Game.settings.mapSize / 2 + 0.5) * Game.settings.chunkSize;
       rootActor.setPosition(new Sup.Math.Vector3(worldX, 0, worldZ));
@@ -63,6 +63,10 @@ function generateWorld() {
     }
   }
   
+  // Spawn the monster
+  let monsterActor = Sup.appendScene("In-Game/Chunks/Monster/Prefab")[0];
+  monsterActor.setPosition(new Sup.Math.Vector3(0, 0, 0));
+  Game.chunkActors.push(monsterActor);
   
   startPosition.z += Game.settings.chunkSize / 2;
   return startPosition;
