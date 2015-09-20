@@ -89,6 +89,124 @@
         "type": "script"
       },
       {
+        "id": "128",
+        "name": "Pirates Manager",
+        "type": "script"
+      },
+      {
+        "id": "98",
+        "name": "HUD",
+        "type": null,
+        "children": [
+          {
+            "id": "99",
+            "name": "Prefab",
+            "type": "scene"
+          },
+          {
+            "id": "203",
+            "name": "Popup",
+            "type": "script"
+          },
+          {
+            "id": "92",
+            "name": "World Map",
+            "type": null,
+            "children": [
+              {
+                "id": "100",
+                "name": "World Map Behavior",
+                "type": "script"
+              },
+              {
+                "id": "93",
+                "name": "Tile Set",
+                "type": "tileSet"
+              },
+              {
+                "id": "94",
+                "name": "Map",
+                "type": "tileMap"
+              },
+              {
+                "id": "186",
+                "name": "World Map",
+                "type": "sprite"
+              },
+              {
+                "id": "188",
+                "name": "Icons",
+                "type": null,
+                "children": [
+                  {
+                    "id": "197",
+                    "name": "Ship",
+                    "type": "sprite"
+                  },
+                  {
+                    "id": "190",
+                    "name": "Island 1",
+                    "type": "sprite"
+                  },
+                  {
+                    "id": "193",
+                    "name": "Island 2",
+                    "type": "sprite"
+                  },
+                  {
+                    "id": "191",
+                    "name": "Boss",
+                    "type": "sprite"
+                  },
+                  {
+                    "id": "189",
+                    "name": "Rock",
+                    "type": "sprite"
+                  },
+                  {
+                    "id": "192",
+                    "name": "Rocks",
+                    "type": "sprite"
+                  },
+                  {
+                    "id": "194",
+                    "name": "6",
+                    "type": "sprite"
+                  },
+                  {
+                    "id": "195",
+                    "name": "7",
+                    "type": "sprite"
+                  },
+                  {
+                    "id": "196",
+                    "name": "8",
+                    "type": "sprite"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "224",
+            "name": "Dialogue",
+            "type": null,
+            "children": [
+              {
+                "id": "226",
+                "name": "Boite_Dialoque",
+                "type": "sprite"
+              },
+              {
+                "id": "231",
+                "name": "Next",
+                "type": "sprite"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "id": "5",
         "name": "Boat",
         "type": null,
@@ -149,11 +267,6 @@
                 "type": "model"
               },
               {
-                "id": "142",
-                "name": "Fx Charge",
-                "type": "sprite"
-              },
-              {
                 "id": "150",
                 "name": "Fx Explose",
                 "type": "sprite"
@@ -172,6 +285,11 @@
                 "id": "156",
                 "name": "Cannon Fx",
                 "type": "script"
+              },
+              {
+                "id": "223",
+                "name": "Shoot",
+                "type": "sound"
               },
               {
                 "id": "47",
@@ -195,8 +313,18 @@
                   },
                   {
                     "id": "147",
-                    "name": "Model",
+                    "name": "Model Blue",
                     "type": "model"
+                  },
+                  {
+                    "id": "238",
+                    "name": "Plouf",
+                    "type": "model"
+                  },
+                  {
+                    "id": "230",
+                    "name": "Plouf Behavior",
+                    "type": "script"
                   }
                 ]
               }
@@ -236,8 +364,13 @@
           },
           {
             "id": "140",
-            "name": "SplashShader",
+            "name": "Splash Shader",
             "type": "shader"
+          },
+          {
+            "id": "222",
+            "name": "Motor",
+            "type": "sound"
           }
         ]
       },
@@ -257,13 +390,8 @@
             "type": "script"
           },
           {
-            "id": "12",
-            "name": "Character 1",
-            "type": "model"
-          },
-          {
-            "id": "13",
-            "name": "Character 2",
+            "id": "179",
+            "name": "Model",
             "type": "model"
           },
           {
@@ -275,6 +403,16 @@
             "id": "105",
             "name": "Sword",
             "type": "model"
+          },
+          {
+            "id": "232",
+            "name": "Slash",
+            "type": "sound"
+          },
+          {
+            "id": "233",
+            "name": "Hit",
+            "type": "sound"
           }
         ]
       },
@@ -297,6 +435,11 @@
             "id": "26",
             "name": "Water Shader",
             "type": "shader"
+          },
+          {
+            "id": "215",
+            "name": "Ocean Wave",
+            "type": "sound"
           }
         ]
       },
@@ -312,7 +455,7 @@
           },
           {
             "id": "87",
-            "name": "BaseShader",
+            "name": "Base Shader",
             "type": "shader"
           },
           {
@@ -333,23 +476,6 @@
             "type": null,
             "children": [
               {
-                "id": "102",
-                "name": "Start",
-                "type": null,
-                "children": [
-                  {
-                    "id": "80",
-                    "name": "Prefab",
-                    "type": "scene"
-                  },
-                  {
-                    "id": "72",
-                    "name": "Model",
-                    "type": "model"
-                  }
-                ]
-              },
-              {
                 "id": "103",
                 "name": "Tortuga",
                 "type": null,
@@ -357,11 +483,6 @@
                   {
                     "id": "96",
                     "name": "Prefab",
-                    "type": "scene"
-                  },
-                  {
-                    "id": "110",
-                    "name": "TestRendu",
                     "type": "scene"
                   },
                   {
@@ -378,9 +499,14 @@
               },
               {
                 "id": "117",
-                "name": "Island_01",
+                "name": "Island 2",
                 "type": null,
                 "children": [
+                  {
+                    "id": "126",
+                    "name": "Prefab",
+                    "type": "scene"
+                  },
                   {
                     "id": "118",
                     "name": "Island_01",
@@ -392,17 +518,22 @@
                     "type": "model"
                   },
                   {
-                    "id": "126",
-                    "name": "Island_01 (1)",
-                    "type": "scene"
+                    "id": "201",
+                    "name": "Barrels_Rhum",
+                    "type": "model"
                   }
                 ]
               },
               {
                 "id": "130",
-                "name": "Island_02",
+                "name": "Island 3",
                 "type": null,
                 "children": [
+                  {
+                    "id": "135",
+                    "name": "Prefab",
+                    "type": "scene"
+                  },
                   {
                     "id": "132",
                     "name": "Island_02",
@@ -414,17 +545,22 @@
                     "type": "model"
                   },
                   {
-                    "id": "135",
-                    "name": "Island_02 (1)",
-                    "type": "scene"
+                    "id": "137",
+                    "name": "Tombe",
+                    "type": "model"
                   }
                 ]
               },
               {
                 "id": "169",
-                "name": "Island_03",
+                "name": "Island 4",
                 "type": null,
                 "children": [
+                  {
+                    "id": "173",
+                    "name": "Prefab",
+                    "type": "scene"
+                  },
                   {
                     "id": "170",
                     "name": "Island_03",
@@ -439,11 +575,50 @@
                     "id": "172",
                     "name": "Cabane",
                     "type": "model"
+                  }
+                ]
+              },
+              {
+                "id": "209",
+                "name": "Rock",
+                "type": null,
+                "children": [
+                  {
+                    "id": "212",
+                    "name": "Prefab",
+                    "type": "scene"
                   },
                   {
-                    "id": "173",
-                    "name": "Island_03 (1)",
+                    "id": "210",
+                    "name": "Rock",
+                    "type": "model"
+                  },
+                  {
+                    "id": "211",
+                    "name": "Rock_SeaLine",
+                    "type": "model"
+                  }
+                ]
+              },
+              {
+                "id": "218",
+                "name": "Rock_02",
+                "type": null,
+                "children": [
+                  {
+                    "id": "219",
+                    "name": "Prefab",
                     "type": "scene"
+                  },
+                  {
+                    "id": "220",
+                    "name": "Rock_02",
+                    "type": "model"
+                  },
+                  {
+                    "id": "221",
+                    "name": "Rock_02_SeaLine",
+                    "type": "model"
                   }
                 ]
               }
@@ -482,6 +657,11 @@
                   {
                     "id": "168",
                     "name": "SeaLine_Octopus",
+                    "type": "model"
+                  },
+                  {
+                    "id": "237",
+                    "name": "Stars",
                     "type": "model"
                   }
                 ]
@@ -528,41 +708,19 @@
         ]
       },
       {
-        "id": "98",
-        "name": "HUD",
+        "id": "206",
+        "name": "Slash Tentacle",
         "type": null,
         "children": [
           {
-            "id": "99",
+            "id": "207",
             "name": "Prefab",
             "type": "scene"
           },
           {
-            "id": "92",
-            "name": "World Map",
-            "type": null,
-            "children": [
-              {
-                "id": "100",
-                "name": "World Map Behavior",
-                "type": "script"
-              },
-              {
-                "id": "93",
-                "name": "Tile Set",
-                "type": "tileSet"
-              },
-              {
-                "id": "94",
-                "name": "Map",
-                "type": "tileMap"
-              },
-              {
-                "id": "101",
-                "name": "Boat",
-                "type": "sprite"
-              }
-            ]
+            "id": "208",
+            "name": "Slash Tentacle Behavior",
+            "type": "script"
           }
         ]
       },
@@ -592,6 +750,82 @@
             "type": "sprite"
           }
         ]
+      },
+      {
+        "id": "180",
+        "name": "Pirate Boat",
+        "type": null,
+        "children": [
+          {
+            "id": "184",
+            "name": "Prefab",
+            "type": "scene"
+          },
+          {
+            "id": "138",
+            "name": "Pirate Boat Behavior",
+            "type": "script"
+          },
+          {
+            "id": "181",
+            "name": "Boat",
+            "type": "model"
+          },
+          {
+            "id": "182",
+            "name": "Cannon",
+            "type": "model"
+          },
+          {
+            "id": "183",
+            "name": "Reactor",
+            "type": "model"
+          },
+          {
+            "id": "199",
+            "name": "Barrels",
+            "type": "model"
+          }
+        ]
+      },
+      {
+        "id": "204",
+        "name": "Pirate",
+        "type": null,
+        "children": [
+          {
+            "id": "205",
+            "name": "Prefab",
+            "type": "scene"
+          },
+          {
+            "id": "200",
+            "name": "Pirate Behavior",
+            "type": "script"
+          },
+          {
+            "id": "202",
+            "name": "Model",
+            "type": "model"
+          }
+        ]
+      },
+      {
+        "id": "216",
+        "name": "Musics",
+        "type": null,
+        "children": [
+          {
+            "id": "217",
+            "name": "Theme 1",
+            "type": "sound"
+          },
+          {
+            "id": "239",
+            "name": "Theme 2",
+            "type": "sound"
+          }
+        ]
       }
     ]
   },
@@ -603,6 +837,11 @@
       {
         "id": "11",
         "name": "HUD",
+        "type": "scene"
+      },
+      {
+        "id": "109",
+        "name": "Dialog",
         "type": "scene"
       },
       {
@@ -665,8 +904,8 @@
         ]
       },
       {
-        "id": "109",
-        "name": "Dialog",
+        "id": "198",
+        "name": "Title Screen",
         "type": "scene"
       }
     ]
@@ -690,32 +929,27 @@
         "id": "58",
         "name": "Font",
         "type": "font"
+      },
+      {
+        "id": "234",
+        "name": "Font2",
+        "type": "font"
+      },
+      {
+        "id": "235",
+        "name": "Font3",
+        "type": "font"
       }
     ]
   },
   {
-    "id": "128",
-    "name": "Wave AI Manager",
-    "type": "script"
-  },
-  {
-    "id": "138",
-    "name": "BarkAI",
-    "type": "script"
+    "id": "236",
+    "name": "End",
+    "type": "scene"
   },
   {
     "id": "21",
     "name": "Start",
     "type": "script"
-  },
-  {
-    "id": "129",
-    "name": "Wave AI Prefab",
-    "type": "scene"
-  },
-  {
-    "id": "137",
-    "name": "Tombe",
-    "type": "model"
   }
 ]

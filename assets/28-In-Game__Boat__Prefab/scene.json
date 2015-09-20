@@ -51,7 +51,7 @@
           "children": [
             {
               "id": "8",
-              "name": "Trigger",
+              "name": "Pilote",
               "children": [],
               "components": [],
               "position": {
@@ -344,6 +344,157 @@
           "visible": true,
           "layer": 0,
           "prefabId": null
+        },
+        {
+          "id": "18",
+          "name": "SpawnManager",
+          "children": [],
+          "components": [],
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        },
+        {
+          "id": "19",
+          "name": "Pirates Spawns",
+          "children": [
+            {
+              "id": "20",
+              "name": "1",
+              "children": [],
+              "components": [],
+              "position": {
+                "x": -10.806036949157715,
+                "y": 8,
+                "z": 8.801360130310059
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0.5221679367459567,
+                "z": 0,
+                "w": 0.8528426810599612
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "21",
+              "name": "2",
+              "children": [],
+              "components": [],
+              "position": {
+                "x": -0.6052808165550232,
+                "y": 8,
+                "z": 24.083133697509766
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0.9927447398749323,
+                "z": 0,
+                "w": 0.12024090988879736
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "22",
+              "name": "3",
+              "children": [],
+              "components": [],
+              "position": {
+                "x": 10.52920150756836,
+                "y": 8,
+                "z": 6.093093395233154
+              },
+              "orientation": {
+                "x": 0,
+                "y": -0.3519412664642121,
+                "z": 0,
+                "w": 0.9360220862935242
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "23",
+              "name": "4",
+              "children": [],
+              "components": [],
+              "position": {
+                "x": -10.00091552734375,
+                "y": 9.387593269348145,
+                "z": -11.71384048461914
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0.18644527941738517,
+                "z": 0,
+                "w": 0.9824653449025459
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            }
+          ],
+          "components": [],
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
         }
       ],
       "components": [
@@ -354,6 +505,23 @@
             "propertyValues": {}
           },
           "id": "0"
+        },
+        {
+          "type": "Behavior",
+          "config": {
+            "behaviorName": "DamageableBehavior",
+            "propertyValues": {
+              "maxHealth": {
+                "type": "number",
+                "value": 1000
+              },
+              "friendly": {
+                "type": "boolean",
+                "value": true
+              }
+            }
+          },
+          "id": "1"
         }
       ],
       "position": {

@@ -48,7 +48,7 @@ class CannonFxBehavior extends Sup.Behavior {
     
     let scale : Sup.Math.Vector3;
     if (this.animCompleted){
-      let value = 0.11*Math.sin(this.time * Math.PI/10);
+      let value = 0.41*Math.sin(this.time * Math.PI/10);
         scale = this.finalScale.clone().add(value, value, value);
     } else {
       scale = this.actor.getLocalScale().clone().add(this.addScaleValue, this.addScaleValue, this.addScaleValue);

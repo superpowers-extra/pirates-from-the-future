@@ -1,7 +1,7 @@
 interface Chunk {
   x: number; z: number;
   type: string;
-  index: number;
+  name: string;
 }
 
 namespace Game {
@@ -9,6 +9,10 @@ namespace Game {
     mapSize: 12,
     chunkSize: 200
   }
+  
+  // Test Metylene afficher Menu           DEBUG
+  export let started: boolean = false;
+  export let firstGame: boolean = true;
   
   export let cameraBehavior: CameraBehavior;
   export let boatBehavior: BoatBehavior;
@@ -25,6 +29,20 @@ namespace Game {
   export let damageables: DamageableBehavior[];
   export let onboardDamageables: DamageableBehavior[];
   
+  export let musicPlay: Sup.Audio.SoundPlayer;
+  export let musicPlayBoss: Sup.Audio.SoundPlayer;
+  
+  
+  // Test Metylene afficher Menu
+  export function initialize(){
+//     if (Game.firstGame) {
+//       Game.firstGame = false;
+//       Game.showTitleScreen();
+//     } else {
+      Game.start();
+//     }
+  }
+  
   export function start() {
     characterBehaviors = [];
     interactiveBehaviors = [];
@@ -36,6 +54,10 @@ namespace Game {
     onboardDamageables = [];
 
     Sup.loadScene("In-Game/Scene");
+    
+    Sup.Audio.playSound("In-Game/Water/Ocean Wave", 1.0, { loop: true });
+    musicPlay = Sup.Audio.playSound("In-Game/Musics/Theme 1", 1.0, { loop: true });
+    musicPlayBoss = new Sup.Audio.SoundPlayer("In-Game/Musics/Theme 2", 1.0, { loop: true });
     let startPosition = generateWorld();
     boatBehavior.setPosition(startPosition);
     
@@ -43,5 +65,9 @@ namespace Game {
       let character = Sup.appendScene("In-Game/Characters/Prefab", boatBehavior.actor)[0];
       character.getBehavior(CharacterBehavior).index = i;
     }
+  }
+
+  export function showTitleScreen(){
+    Sup.loadScene("Menu/Title Screen");
   }
 }

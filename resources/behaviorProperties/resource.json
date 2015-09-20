@@ -17,6 +17,10 @@
           "type": "number"
         },
         {
+          "name": "motorSoundPlay",
+          "type": "boolean"
+        },
+        {
           "name": "speed",
           "type": "Sup.Math.Vector3"
         }
@@ -49,39 +53,7 @@
           "type": "Sup.Math.Vector3"
         },
         {
-          "name": "angle",
-          "type": "number"
-        },
-        {
-          "name": "speed",
-          "type": "number"
-        },
-        {
-          "name": "maxSpeed",
-          "type": "number"
-        },
-        {
-          "name": "targetPosition",
-          "type": "Sup.Math.Vector3"
-        },
-        {
-          "name": "targetAngle",
-          "type": "number"
-        },
-        {
-          "name": "weaponRange",
-          "type": "number"
-        },
-        {
-          "name": "interactiveY",
-          "type": "number"
-        },
-        {
-          "name": "interactiveTimer",
-          "type": "number"
-        },
-        {
-          "name": "hasStruck",
+          "name": "dead",
           "type": "boolean"
         }
       ]
@@ -163,6 +135,10 @@
         {
           "name": "scale",
           "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "damageValue",
+          "type": "number"
         }
       ]
     },
@@ -244,6 +220,10 @@
           "type": "number"
         },
         {
+          "name": "distance",
+          "type": "number"
+        },
+        {
           "name": "chargeTimer",
           "type": "number"
         },
@@ -260,8 +240,8 @@
           "type": "boolean"
         },
         {
-          "name": "attackLaunched",
-          "type": "boolean"
+          "name": "explosionFxScale",
+          "type": "Sup.Math.Vector3"
         }
       ]
     },
@@ -280,21 +260,6 @@
         {
           "name": "onboard",
           "type": "boolean"
-        }
-      ]
-    },
-    "WaveAIManagerBehavior": {
-      "scriptId": "128",
-      "parentBehavior": null,
-      "properties": []
-    },
-    "BarkAIBehavior": {
-      "scriptId": "138",
-      "parentBehavior": null,
-      "properties": [
-        {
-          "name": "speed",
-          "type": "number"
         }
       ]
     },
@@ -357,21 +322,12 @@
       "parentBehavior": null,
       "properties": []
     },
-    "DialoguesDataBehavior": {
-      "scriptId": "164",
-      "parentBehavior": null,
-      "properties": []
-    },
     "DamageableBehavior": {
       "scriptId": "125",
       "parentBehavior": null,
       "properties": [
         {
           "name": "radius",
-          "type": "number"
-        },
-        {
-          "name": "health",
           "type": "number"
         },
         {
@@ -383,8 +339,73 @@
           "type": "boolean"
         },
         {
-          "name": "immune",
+          "name": "friendly",
           "type": "boolean"
+        }
+      ]
+    },
+    "PopupBehavior": {
+      "scriptId": "203",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "dt",
+          "type": "number"
+        },
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ]
+    },
+    "PiratesManagerBehavior": {
+      "scriptId": "128",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "PirateBoatBehavior": {
+      "scriptId": "138",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "position",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "speed",
+          "type": "Sup.Math.Vector3"
+        }
+      ]
+    },
+    "PirateBehavior": {
+      "scriptId": "200",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "attackCooldownTimer",
+          "type": "number"
+        },
+        {
+          "name": "waitTimer",
+          "type": "number"
+        }
+      ]
+    },
+    "SlashTentacleBehavior": {
+      "scriptId": "208",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "delayTimer",
+          "type": "number"
+        },
+        {
+          "name": "slashTimer",
+          "type": "number"
+        },
+        {
+          "name": "postSlashTimer",
+          "type": "number"
         }
       ]
     }

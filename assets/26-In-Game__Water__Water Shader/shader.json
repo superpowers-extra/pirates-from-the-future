@@ -110,6 +110,16 @@
         0.5,
         0.7
       ]
+    },
+    {
+      "id": "13",
+      "name": "color",
+      "type": "c",
+      "value": [
+        1,
+        1,
+        1
+      ]
     }
   ],
   "useLightUniforms": true,
@@ -118,6 +128,6 @@
     "revisionId": 1291
   },
   "fragmentShader": {
-    "revisionId": 1584
+    "revisionId": 1685
   }
 }

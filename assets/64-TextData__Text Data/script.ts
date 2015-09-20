@@ -8,7 +8,7 @@ namespace TextData {
     let obj = texts[language];
     for (let part of parts) {
       if (obj == null) {
-        Sup.log(`The key -"${key}"- is missing for language -${language}-`);
+        //Sup.log(`The key -"${key}"- is missing for language -${language}-`);
         break;
       }
       obj = obj[part];

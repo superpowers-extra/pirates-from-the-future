@@ -10,7 +10,7 @@
   "maps": [
     "map"
   ],
-  "filtering": "pixelated",
+  "filtering": "smooth",
   "wrapping": "clampToEdge",
   "animations": [],
   "opacity": null,

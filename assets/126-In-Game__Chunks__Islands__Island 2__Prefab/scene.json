@@ -1,0 +1,373 @@
+{
+  "nodes": [
+    {
+      "id": "0",
+      "name": "Island",
+      "children": [
+        {
+          "id": "1",
+          "name": "Mesh",
+          "children": [
+            {
+              "id": "5",
+              "name": "Barrels",
+              "children": [],
+              "components": [
+                {
+                  "type": "ModelRenderer",
+                  "config": {
+                    "modelAssetId": "201",
+                    "animationId": null,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "shader",
+                    "shaderAssetId": "87"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -0.8406012058258057,
+                "y": 6.945898532867432,
+                "z": 0.012792835012078285
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0.9256803401242321,
+                "z": 0,
+                "w": -0.37830664836096967
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "6",
+              "name": "Barrels",
+              "children": [],
+              "components": [
+                {
+                  "type": "ModelRenderer",
+                  "config": {
+                    "modelAssetId": "201",
+                    "animationId": null,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "shader",
+                    "shaderAssetId": "87"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -2.50163197517395,
+                "y": 6.4600653648376465,
+                "z": -2.9833085536956787
+              },
+              "orientation": {
+                "x": -0.01320287847323786,
+                "y": 0.9867965265883042,
+                "z": -0.1136010436456667,
+                "w": 0.11468693108361189
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "7",
+              "name": "Barrels",
+              "children": [],
+              "components": [
+                {
+                  "type": "ModelRenderer",
+                  "config": {
+                    "modelAssetId": "201",
+                    "animationId": null,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "shader",
+                    "shaderAssetId": "87"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -4.662583827972412,
+                "y": 6.39479923248291,
+                "z": -0.3656926453113556
+              },
+              "orientation": {
+                "x": 0.46952801992305393,
+                "y": 0.8629419341748057,
+                "z": -0.18630371854142452,
+                "w": -0.01286816527548259
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "8",
+              "name": "Barrels",
+              "children": [],
+              "components": [
+                {
+                  "type": "ModelRenderer",
+                  "config": {
+                    "modelAssetId": "201",
+                    "animationId": null,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "shader",
+                    "shaderAssetId": "87"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": 0.5590152740478516,
+                "y": 6.945898532867432,
+                "z": 2.8158950805664062
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0.997791399423514,
+                "z": 0,
+                "w": -0.06642524643555893
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "9",
+              "name": "Barrels",
+              "children": [],
+              "components": [
+                {
+                  "type": "ModelRenderer",
+                  "config": {
+                    "modelAssetId": "201",
+                    "animationId": null,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "shader",
+                    "shaderAssetId": "87"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": 1.6626923084259033,
+                "y": 6.556516647338867,
+                "z": 5.577487468719482
+              },
+              "orientation": {
+                "x": 0.3708729534240064,
+                "y": 0.6228951311229549,
+                "z": 0.4806379003348473,
+                "w": 0.49339852777177884
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "10",
+              "name": "Tombe",
+              "children": [],
+              "components": [
+                {
+                  "type": "ModelRenderer",
+                  "config": {
+                    "modelAssetId": "137",
+                    "animationId": null,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "shader",
+                    "shaderAssetId": "87"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -2.690481662750244,
+                "y": 6.978929042816162,
+                "z": 2.447439432144165
+              },
+              "orientation": {
+                "x": 0,
+                "y": -0.39202372207687136,
+                "z": 0,
+                "w": 0.9199550970926422
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            }
+          ],
+          "components": [
+            {
+              "type": "ModelRenderer",
+              "config": {
+                "modelAssetId": "118",
+                "animationId": null,
+                "castShadow": false,
+                "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
+                "materialType": "shader",
+                "shaderAssetId": "87"
+              },
+              "id": "0"
+            }
+          ],
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        },
+        {
+          "id": "4",
+          "name": "SeaLine",
+          "children": [],
+          "components": [
+            {
+              "type": "ModelRenderer",
+              "config": {
+                "modelAssetId": "119",
+                "animationId": null,
+                "castShadow": false,
+                "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
+                "materialType": "shader",
+                "shaderAssetId": "107"
+              },
+              "id": "0"
+            }
+          ],
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        }
+      ],
+      "components": [
+        {
+          "type": "Behavior",
+          "config": {
+            "behaviorName": "CircleColliderBehavior",
+            "propertyValues": {
+              "radius": {
+                "type": "number",
+                "value": 35
+              }
+            }
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    }
+  ]
+}

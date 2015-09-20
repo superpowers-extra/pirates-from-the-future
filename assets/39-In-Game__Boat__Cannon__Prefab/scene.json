@@ -88,7 +88,7 @@
         },
         {
           "id": "3",
-          "name": "Trigger",
+          "name": "Pilote",
           "children": [],
           "components": [],
           "position": {
@@ -118,8 +118,8 @@
           "components": [],
           "position": {
             "x": 0,
-            "y": 4,
-            "z": 1.6
+            "y": 5,
+            "z": 1.2
           },
           "orientation": {
             "x": 0,
@@ -155,6 +155,49 @@
           "scale": {
             "x": 1,
             "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        },
+        {
+          "id": "6",
+          "name": "Explosion Fx",
+          "children": [],
+          "components": [
+            {
+              "type": "SpriteRenderer",
+              "config": {
+                "spriteAssetId": "150",
+                "animationId": null,
+                "horizontalFlip": false,
+                "verticalFlip": false,
+                "castShadow": false,
+                "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
+                "materialType": "basic",
+                "shaderAssetId": null
+              },
+              "id": "0"
+            }
+          ],
+          "position": {
+            "x": 0,
+            "y": 2.126860567883,
+            "z": -2.4999999403953552
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1.5,
+            "y": 1.5,
             "z": 1
           },
           "visible": true,

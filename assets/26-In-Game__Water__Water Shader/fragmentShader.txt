@@ -7,8 +7,10 @@
 THREE_ShaderChunk(common)
 THREE_ShaderChunk(lights_phong_pars_fragment)
 THREE_ShaderChunk(shadowmap_pars_fragment)
-  
+
 vec3 emissive = vec3(0.0);
+
+uniform vec3 color;
 
 uniform float specularStrength;
 uniform float shininess;
@@ -112,7 +114,11 @@ void main()
   
   //*
   float outLightLevel = length( outgoingLight );
-  if ( outLightLevel > 1.05 )
+  if ( outLightLevel > 2.0 )
+  {
+    outLightLevel = 2.0;
+  }
+  else if ( outLightLevel > 1.05 )
   {
     outLightLevel = 1.0;
   }
@@ -138,6 +144,8 @@ void main()
   #endif
     
   c.rgb *= outgoingLight;
+  
+  c.rgb *= color;
   
   //c.rgb = vec3(height);
   

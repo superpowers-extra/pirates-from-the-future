@@ -21,15 +21,18 @@ class DialogueBehavior extends Sup.Behavior {
     this.avatarLocation   = this.actor.getChild("Avatar")
     this.nomPersonnageLocation = this.actor.getChild("NomPersonnage");
     this.actor.setVisible(false);
+    this.open("debutDialogue");
   }
 
   open(dialogueName: string) {
     this.storeButtons = [];
     let conf = Dialogues[dialogueName]
     
+    Sup.getActor("World Map");
+    
     // On applique le texte a notre fenêtre dialogue.
-    //this.dialogueLocation.textRenderer.setText(conf.dialogue);
-    this.dialogueLocation.addBehavior(TextBehavior,{"text":conf.dialogue,"textShowSpeed":"0.019"});
+    this.dialogueLocation.textRenderer.setText(conf.dialogue);
+    //this.dialogueLocation.addBehavior(TextBehavior,{"text":conf.dialogue,"textShowSpeed":"0.012"});
     
     // Set Sprite for avatar
     
@@ -55,12 +58,13 @@ class DialogueBehavior extends Sup.Behavior {
     let i = 0;
     for(let indice in conf.buttons) {
       let skin = conf.buttons[indice].skin || "Menu/TMP/Button2";
+      let text = conf.buttons[indice].texte;
       let action = conf.buttons[indice].action;
       
       // Création du bouton
       let myButton = new Sup.Actor("Button_"+indice,this.buttonsLocation);
       myButton.setLocalPosition( new Sup.Math.Vector3( i*this.offset , 0 , 0 ) );
-      myButton.setLocalScale( new Sup.Math.Vector3( 2.5 , 2.5 , 1 ) );
+      myButton.setLocalScale( new Sup.Math.Vector3( 1 , 1 , 1 ) );
       
       // On applique le sprite au bouton!
       let buttonSprite = new Sup.SpriteRenderer(myButton,skin);
@@ -68,11 +72,13 @@ class DialogueBehavior extends Sup.Behavior {
       this.storeButtons.push(behavior);
       behavior["onAction"] = action;
       
-      // Création du texte dans le bouton!
-      let myText = new Sup.Actor("Texte",myButton);
-      myText.setLocalPosition( new Sup.Math.Vector3( 0 , 0 , 0.5 ));
-      let textRndr = new Sup.TextRenderer(myText,indice,"Credits/Font");
-      textRndr.setSize(14);
+      if(text != undefined) {
+        // Création du texte dans le bouton!
+        let myText = new Sup.Actor("Texte",myButton);
+        myText.setLocalPosition( new Sup.Math.Vector3( 0 , 0 , 0.5 ));
+        let textRndr = new Sup.TextRenderer(myText,indice,"Credits/Font");
+        textRndr.setSize(14);
+      }
       i++;
     }
     
@@ -90,10 +96,6 @@ class DialogueBehavior extends Sup.Behavior {
   }
 
   update() {
-    
-    if(Sup.Input.wasKeyJustPressed("A")) {
-      this.open("marchandDialogue");
-    }
     
     // On vérifie que la boite de dialogue est ouverte !
     if(this.isOpen) {
@@ -126,12 +128,10 @@ class DialogueBehavior extends Sup.Behavior {
       }
       
       if(pressed)
-        Sup.log("pressed");
         this.storeButtons[this.selected].onFocus();
       
       // Si le joueur éxecute une action sur notre menu !
-      if(Input.pressAction1(0)){
-        //this.dialogueLocation.getBehavior(TextBehavior).end();
+      if (Sup.Input.isKeyDown("SPACE") || Sup.Input.isKeyDown("RETURN")) {
         this.storeButtons[this.selected]["onAction"](this);
       }
     } 

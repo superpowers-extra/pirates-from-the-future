@@ -1,37 +1,28 @@
 let Dialogues = {
-  "marchandDialogue" : {
-    dialogue: "salut les gars ça va bien ?!\nGOGO LES MECS!",
-    nomPersonnage : "Marchand",
+  "debutDialogue" : {
+    dialogue:
+`Hoh hoh, matelot ! Des rumeurs racontent qu'il y a
+un trésor dans l'secteur. Faites tout de même
+attention aux pirates ennemis qui naviguent
+dans les environs, camarade !`,
     buttons: {
       "Suivant" : {
-        skin : "Menu/TMP/Button1",
+        skin : "In-Game/HUD/Dialogue/Next",
         action : (boiteDialogue) => {
-          boiteDialogue.open("queteMarchand")
+          boiteDialogue.open("debutDialogue2")
         }
-      },
-      "Annuler" : {
-        action : (boiteDialogue) => {
-          boiteDialogue.close();
-        }
-      },
+      }
     }
   },
-  "queteMarchand" : {
-    dialogue: "WAOUH il est trop beau ce jeu!",
-    nomPersonnage : "Moi",
+  "debutDialogue2" : {
+    dialogue: "En avant, marin d'eau douce !",
     buttons: {
       "Terminer" : {
-        skin : "Menu/TMP/Button1",
+        skin : "In-Game/HUD/Dialogue/Next",
         action : (boiteDialogue) => {
           boiteDialogue.close()
         }
-      },
-      "Retour" : {
-        skin : "Menu/TMP/Button1",
-        action : (boiteDialogue) => {
-          boiteDialogue.open("marchandDialogue")
-        }
-      },
+      }
     }
   }
 }

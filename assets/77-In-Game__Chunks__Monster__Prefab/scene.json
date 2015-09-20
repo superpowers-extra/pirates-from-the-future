@@ -27,8 +27,8 @@
                         "color": "ffffff",
                         "overrideOpacity": false,
                         "opacity": null,
-                        "materialType": "basic",
-                        "shaderAssetId": null
+                        "materialType": "shader",
+                        "shaderAssetId": "87"
                       },
                       "id": "0"
                     },
@@ -42,15 +42,15 @@
                     }
                   ],
                   "position": {
-                    "x": 7,
-                    "y": 12,
-                    "z": 0
+                    "x": 6.900059700012207,
+                    "y": 10.958730697631836,
+                    "z": -0.057700447738170624
                   },
                   "orientation": {
-                    "x": 0,
-                    "y": 0.4999999910258843,
-                    "z": 0,
-                    "w": 0.8660254037844385
+                    "x": 0.07026484598211627,
+                    "y": 0.4983515623064543,
+                    "z": -0.040567427861203355,
+                    "w": 0.863170236897848
                   },
                   "scale": {
                     "x": 20,
@@ -156,7 +156,7 @@
                           "type": "ModelRenderer",
                           "config": {
                             "modelAssetId": "155",
-                            "animationId": null,
+                            "animationId": "2",
                             "castShadow": false,
                             "receiveShadow": false,
                             "color": "ffffff",
@@ -169,9 +169,9 @@
                         }
                       ],
                       "position": {
-                        "x": 3,
+                        "x": 4,
                         "y": 0,
-                        "z": 3
+                        "z": 4
                       },
                       "orientation": {
                         "x": 0,
@@ -197,7 +197,7 @@
                           "type": "ModelRenderer",
                           "config": {
                             "modelAssetId": "155",
-                            "animationId": null,
+                            "animationId": "2",
                             "castShadow": false,
                             "receiveShadow": false,
                             "color": "ffffff",
@@ -210,9 +210,9 @@
                         }
                       ],
                       "position": {
-                        "x": -3,
+                        "x": -4,
                         "y": 0,
-                        "z": 3
+                        "z": 4
                       },
                       "orientation": {
                         "x": 0,
@@ -238,7 +238,7 @@
                           "type": "ModelRenderer",
                           "config": {
                             "modelAssetId": "155",
-                            "animationId": null,
+                            "animationId": "2",
                             "castShadow": false,
                             "receiveShadow": false,
                             "color": "ffffff",
@@ -251,9 +251,9 @@
                         }
                       ],
                       "position": {
-                        "x": -3,
+                        "x": -4,
                         "y": 0,
-                        "z": -3
+                        "z": -4
                       },
                       "orientation": {
                         "x": 0,
@@ -279,7 +279,7 @@
                           "type": "ModelRenderer",
                           "config": {
                             "modelAssetId": "155",
-                            "animationId": null,
+                            "animationId": "2",
                             "castShadow": false,
                             "receiveShadow": false,
                             "color": "ffffff",
@@ -292,9 +292,9 @@
                         }
                       ],
                       "position": {
-                        "x": 3,
+                        "x": 4,
                         "y": 0,
-                        "z": -3
+                        "z": -4
                       },
                       "orientation": {
                         "x": 0,
@@ -315,7 +315,7 @@
                   "components": [],
                   "position": {
                     "x": 0,
-                    "y": -95,
+                    "y": -160,
                     "z": 0
                   },
                   "orientation": {
@@ -330,6 +330,129 @@
                     "z": 10
                   },
                   "visible": true,
+                  "layer": 0,
+                  "prefabId": null
+                },
+                {
+                  "id": "13",
+                  "name": "Barrels",
+                  "children": [],
+                  "components": [
+                    {
+                      "type": "ModelRenderer",
+                      "config": {
+                        "modelAssetId": "201",
+                        "animationId": null,
+                        "castShadow": false,
+                        "receiveShadow": false,
+                        "color": "ffffff",
+                        "overrideOpacity": false,
+                        "opacity": null,
+                        "materialType": "shader",
+                        "shaderAssetId": "87"
+                      },
+                      "id": "0"
+                    }
+                  ],
+                  "position": {
+                    "x": -2.7122294902801514,
+                    "y": 11.811697959899902,
+                    "z": -3.0687739849090576
+                  },
+                  "orientation": {
+                    "x": 0,
+                    "y": -0.7956952036247904,
+                    "z": 0,
+                    "w": 0.6056972195659579
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "visible": true,
+                  "layer": 0,
+                  "prefabId": null
+                },
+                {
+                  "id": "14",
+                  "name": "Barrels",
+                  "children": [],
+                  "components": [
+                    {
+                      "type": "ModelRenderer",
+                      "config": {
+                        "modelAssetId": "201",
+                        "animationId": null,
+                        "castShadow": false,
+                        "receiveShadow": false,
+                        "color": "ffffff",
+                        "overrideOpacity": false,
+                        "opacity": null,
+                        "materialType": "shader",
+                        "shaderAssetId": "87"
+                      },
+                      "id": "0"
+                    }
+                  ],
+                  "position": {
+                    "x": -0.44383910298347473,
+                    "y": 11.739297866821289,
+                    "z": -2.437401533126831
+                  },
+                  "orientation": {
+                    "x": 0.18603409222721146,
+                    "y": 0.8802220984893044,
+                    "z": -0.04569766427458429,
+                    "w": -0.4341798181983525
+                  },
+                  "scale": {
+                    "x": 1,
+                    "y": 1,
+                    "z": 1
+                  },
+                  "visible": true,
+                  "layer": 0,
+                  "prefabId": null
+                },
+                {
+                  "id": "15",
+                  "name": "Stars",
+                  "children": [],
+                  "components": [
+                    {
+                      "type": "ModelRenderer",
+                      "config": {
+                        "modelAssetId": "237",
+                        "animationId": null,
+                        "castShadow": false,
+                        "receiveShadow": false,
+                        "color": "ffffff",
+                        "overrideOpacity": false,
+                        "opacity": null,
+                        "materialType": "basic",
+                        "shaderAssetId": "87"
+                      },
+                      "id": "0"
+                    }
+                  ],
+                  "position": {
+                    "x": 0,
+                    "y": 20,
+                    "z": 0
+                  },
+                  "orientation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "w": 1
+                  },
+                  "scale": {
+                    "x": 10,
+                    "y": 10,
+                    "z": 10
+                  },
+                  "visible": false,
                   "layer": 0,
                   "prefabId": null
                 }
@@ -405,7 +528,7 @@
                   },
                   "maxHealth": {
                     "type": "number",
-                    "value": 1000
+                    "value": 400
                   },
                   "immune": {
                     "type": "boolean",

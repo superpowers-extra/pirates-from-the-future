@@ -54,13 +54,13 @@
           "children": [
             {
               "id": "3",
-              "name": "Marker",
+              "name": "Ship",
               "children": [],
               "components": [
                 {
                   "type": "SpriteRenderer",
                   "config": {
-                    "spriteAssetId": "101",
+                    "spriteAssetId": "197",
                     "animationId": null,
                     "horizontalFlip": false,
                     "verticalFlip": false,
@@ -94,20 +94,68 @@
               "visible": true,
               "layer": 0,
               "prefabId": null
+            },
+            {
+              "id": "4",
+              "name": "Boss",
+              "children": [],
+              "components": [
+                {
+                  "type": "SpriteRenderer",
+                  "config": {
+                    "spriteAssetId": "191",
+                    "animationId": null,
+                    "horizontalFlip": false,
+                    "verticalFlip": false,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "basic",
+                    "shaderAssetId": null
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0.5
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 0.5,
+                "y": 0.5,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
             }
           ],
           "components": [
             {
-              "type": "TileMapRenderer",
+              "type": "SpriteRenderer",
               "config": {
-                "tileMapAssetId": "94",
-                "tileSetAssetId": null,
+                "spriteAssetId": "186",
+                "animationId": null,
+                "horizontalFlip": false,
+                "verticalFlip": false,
                 "castShadow": false,
                 "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
                 "materialType": "basic",
                 "shaderAssetId": null
               },
-              "id": "0"
+              "id": "2"
             },
             {
               "type": "Behavior",
@@ -115,13 +163,191 @@
                 "behaviorName": "WorldMapBehavior",
                 "propertyValues": {}
               },
+              "id": "3"
+            }
+          ],
+          "position": {
+            "x": 20,
+            "y": -9,
+            "z": 0
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 2.5,
+            "y": 2.5,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        },
+        {
+          "id": "5",
+          "name": "Dialogues",
+          "children": [
+            {
+              "id": "6",
+              "name": "Buttons",
+              "children": [],
+              "components": [],
+              "position": {
+                "x": 10.935301780700684,
+                "y": -6.429426670074463,
+                "z": 0.5000000223517418
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "7",
+              "name": "Dialogue",
+              "children": [],
+              "components": [
+                {
+                  "type": "TextRenderer",
+                  "config": {
+                    "fontAssetId": "235",
+                    "text": "Text",
+                    "alignment": "left",
+                    "size": null,
+                    "color": "333333",
+                    "verticalAlignment": "top"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -16,
+                "y": 8,
+                "z": 0.5
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1.5,
+                "y": 1.5,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "8",
+              "name": "Avatar",
+              "children": [],
+              "components": [],
+              "position": {
+                "x": -7.284331798553467,
+                "y": 2.937833547592163,
+                "z": 0.5
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "9",
+              "name": "NomPersonnage",
+              "children": [],
+              "components": [
+                {
+                  "type": "TextRenderer",
+                  "config": {
+                    "fontAssetId": "58",
+                    "text": "",
+                    "alignment": "left",
+                    "size": null,
+                    "color": "ffffff",
+                    "verticalAlignment": "top"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -14.402560234069824,
+                "y": 1.747463345527649,
+                "z": 0.5
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            }
+          ],
+          "components": [
+            {
+              "type": "Behavior",
+              "config": {
+                "behaviorName": "DialogueBehavior",
+                "propertyValues": {}
+              },
+              "id": "0"
+            },
+            {
+              "type": "SpriteRenderer",
+              "config": {
+                "spriteAssetId": "226",
+                "animationId": null,
+                "horizontalFlip": false,
+                "verticalFlip": false,
+                "castShadow": false,
+                "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
+                "materialType": "basic",
+                "shaderAssetId": null
+              },
               "id": "1"
             }
           ],
           "position": {
-            "x": 14,
-            "y": -14,
-            "z": 0
+            "x": 0,
+            "y": 0,
+            "z": 2
           },
           "orientation": {
             "x": 0,

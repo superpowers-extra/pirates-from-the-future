@@ -48,6 +48,88 @@
               "visible": true,
               "layer": 0,
               "prefabId": null
+            },
+            {
+              "id": "3",
+              "name": "Barrel",
+              "children": [],
+              "components": [
+                {
+                  "type": "ModelRenderer",
+                  "config": {
+                    "modelAssetId": "201",
+                    "animationId": null,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "shader",
+                    "shaderAssetId": "87"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -0.6072476506233215,
+                "y": 0.8571751713752747,
+                "z": -0.05705546587705612
+              },
+              "orientation": {
+                "x": 0,
+                "y": -0.43931225746015523,
+                "z": 0,
+                "w": 0.8983344309192055
+              },
+              "scale": {
+                "x": 0.1,
+                "y": 0.1,
+                "z": 0.1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "4",
+              "name": "Tombe",
+              "children": [],
+              "components": [
+                {
+                  "type": "ModelRenderer",
+                  "config": {
+                    "modelAssetId": "137",
+                    "animationId": null,
+                    "castShadow": false,
+                    "receiveShadow": false,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "basic",
+                    "shaderAssetId": null
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -0.16605472564697266,
+                "y": 0.9150570034980774,
+                "z": -0.5685999393463135
+              },
+              "orientation": {
+                "x": -0.06294350999086866,
+                "y": 0,
+                "z": 0,
+                "w": 0.998017088563168
+              },
+              "scale": {
+                "x": 0.1,
+                "y": 0.1,
+                "z": 0.1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
             }
           ],
           "components": [

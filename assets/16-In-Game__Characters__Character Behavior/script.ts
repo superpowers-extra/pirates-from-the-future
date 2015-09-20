@@ -5,33 +5,38 @@ class CharacterBehavior extends Sup.Behavior {
 
   index: number;
   position: Sup.Math.Vector3;
-  angle: number;
-  speed = 0;
-  maxSpeed = 0.5;
+  private angle: number;
+  private speed = 0;
+  static maxSpeed = 0.5;
 
-  state = CharacterState.Free;
+  private state = CharacterState.Free;
 
-  targetPosition: Sup.Math.Vector3;
-  targetAngle: number;
+  private targetPosition: Sup.Math.Vector3;
+  private targetAngle: number;
 
-  modelRndr: Sup.ModelRenderer;
+  private modelRndr: Sup.ModelRenderer;
 
-  weaponActor: Sup.Actor;
-  weaponTween: Sup.Tween;
-  weaponRange = 5;
+  private weaponActor: Sup.Actor;
+  private weaponRange = 5;
 
-  interactiveActor: Sup.Actor;
-  interactiveY: number;
-  interactiveTimer = 0;
+  private interactiveActor: Sup.Actor;
+  private interactiveY: number;
+  private interactiveTimer = 0;
 
-  hasStruck = false;
+  private isAttacking = false;
+  private hasStruck = false;
+
+  dead = false;
+  private deadTimer = 0;
+  static deadDuration = 180;
 
   awake() { Game.characterBehaviors.push(this); }
   
   start() {
+    this.actor["onDead"] = this.onDead.bind(this);
+    
     this.modelRndr = this.actor.getChild("Model").modelRenderer;
-    this.modelRndr.setModel(`In-Game/Characters/Character ${this.index + 1}`);
-    this.actor.moveLocal(0, 7, this.index == 0 ? -5 : 5);
+    this.actor.moveLocal(0, 7, this.index == 0 ? 0 : 8);
     this.position = this.actor.getLocalPosition();
     
     this.weaponActor = this.actor.getChild("Weapon");
@@ -41,11 +46,30 @@ class CharacterBehavior extends Sup.Behavior {
   }
 
   update() {
+    if (this.dead) {
+      this.deadTimer++;
+      if( this.deadTimer === CharacterBehavior.deadDuration) {
+        this.deadTimer = 0;
+        this.dead = false;
+        
+        this.actor.getBehavior(DamageableBehavior).refillHealth();
+      }
+      return;
+    }
+    
     this.movements();
+    this.animation();
     this.interactions();
     
     // DEBUG
     //if (Sup.Input.wasKeyJustPressed("U")) Sup.log(this.position);
+  }
+
+  onDead() {
+    if (this.dead) return;
+
+    this.dead = true;
+    this.modelRndr.setAnimation("Death", false);
   }
 
   private movements() {
@@ -56,13 +80,12 @@ class CharacterBehavior extends Sup.Behavior {
         this.actor.setLocalPosition(this.position);
         this.actor.setLocalEulerY(this.angle);
       }
-      
       return;
     }
     
     let targetAngle = Input.getTargetAngle(this.index);
     if (targetAngle != null) {
-      this.speed = Sup.Math.lerp(this.speed, this.maxSpeed, 0.15);
+      this.speed = Sup.Math.lerp(this.speed, CharacterBehavior.maxSpeed, 0.15);
 
       this.angle = targetAngle - Game.boatBehavior.angle;
       this.actor.setLocalEulerY(this.angle);
@@ -134,28 +157,25 @@ class CharacterBehavior extends Sup.Behavior {
     }
     
     // Attack
-    if (Input.pressAction2(this.index) && this.weaponTween == null) {
-      this.hasStruck = false;
+    if (this.isAttacking) {
+      if (!this.hasStruck && this.modelRndr.getAnimationTime() / this.modelRndr.getAnimationDuration() > 0.5) {
+        this.hasStruck = true;
+        this.dealDamage();
+        Sup.Audio.playSound("In-Game/Characters/Slash", 0.8, { loop: false, pitch : (Math.random()/2)});
+      }
+      if (!this.modelRndr.isAnimationPlaying()) this.isAttacking = false;
       
-      this.weaponTween = new Sup.Tween(this.weaponActor, { angle: 0, progress: 0 })
-        .to({ angle: Math.PI / 2, progress: 1 }, 200)
-        .yoyo(true)
-        .repeat(1)
-        .onUpdate((object) => {
-          this.weaponActor.setLocalEulerZ(object.angle);
-          
-          if (object.progress > 0.5 && !this.hasStruck) {
-            this.hasStruck = true;
-            this.dealDamage();
-          }
-        
-        }).onComplete(() => { this.weaponTween = null; })
-        .start();
+    } else if (Input.pressAction2(this.index) && !this.isAttacking) {
+      this.hasStruck = false;
+      this.isAttacking = true;
+      this.modelRndr.setAnimation("Attack", false);
     }
   }
 
   private dealDamage() {
     for (let damageable of Game.onboardDamageables) {
+      if (damageable.friendly) continue;
+      
       let diff = damageable.actor.getLocalPosition().subtract(this.position);
       let angle = Math.atan2(diff.x, diff.z);
       
@@ -166,6 +186,8 @@ class CharacterBehavior extends Sup.Behavior {
   }
 
   private interactions() {
+    if (this.isAttacking) return;
+    
     this.interactiveActor.setVisible(false);
     this.interactiveActor.setEulerY(0);
     for (let interaction of Game.interactiveBehaviors) {
@@ -175,7 +197,7 @@ class CharacterBehavior extends Sup.Behavior {
       let diff = interaction.position.clone().subtract(this.position);
       let viewAngle = Math.atan2(diff.x, diff.z);
       let diffAngle = Sup.Math.wrapAngle(viewAngle - this.angle);
-      if (Math.abs(diffAngle) > Math.PI / 2) continue;
+      //if (Math.abs(diffAngle) > Math.PI / 2 && this.state === CharacterState.Free) continue;
 
       this.interactiveActor.setVisible(true);
       this.interactiveActor.setLocalPosition(interaction.markerPosition);
@@ -189,16 +211,26 @@ class CharacterBehavior extends Sup.Behavior {
     this.interactiveActor.setLocalY(this.interactiveY + 0.5 * Math.sin(this.interactiveTimer / 10));
   }
 
+  private animation() {
+    if (this.state != CharacterState.Free) this.modelRndr.setAnimation("Action");
+    else if (this.isAttacking) {}
+    else if ((Input.horizontal(this.index)) || (Input.vertical(this.index))) this.modelRndr.setAnimation("Walk");
+    else this.modelRndr.setAnimation("Idle");
+    
+    // Link the weapon
+    let weaponTransform = this.modelRndr.getBoneTransform("Weapon");
+    this.weaponActor.setPosition(weaponTransform.position);
+    this.weaponActor.setOrientation(weaponTransform.orientation);
+  }
+
+  // State
   setState(state: CharacterState) {
     this.state = state;
     if (this.state === CharacterState.Free) {
-      this.modelRndr.setColor(0, 0, 1);
       
       // Clear target
       this.targetPosition = null;
       this.targetAngle = null;
-    } else {
-      this.modelRndr.setColor(1, 0, 0);
     }
   }
 

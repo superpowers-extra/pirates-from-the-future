@@ -5,7 +5,7 @@ class BoatBehavior extends Sup.Behavior {
   position: Sup.Math.Vector3;
   chunkOffset = { x: 0, z: 0 };
   angle: number;
-
+  motorSoundPlay = false
   private acceleration = 0;
   static maxAcceleration = 0.02;
   speed = new Sup.Math.Vector3();
@@ -17,6 +17,8 @@ class BoatBehavior extends Sup.Behavior {
   private rotationSpeed = 0;
   static maxRotationSpeed = 0.03;
   static rotationSpeedDrag = 0.95;
+  
+  static maxLightIntensity = 1.0;
 
   static radius = 30;
 
@@ -26,6 +28,8 @@ class BoatBehavior extends Sup.Behavior {
   private reactorRight: Sup.Actor;
   private burstLeft: Sup.Actor;
   private burstRight: Sup.Actor;
+  private lightLeft: Sup.Light;
+  private lightRight: Sup.Light;
   private particuleList: { actor: Sup.Actor, speed: Sup.Math.Vector3 }[] = [];
 
   private splashRndr: Sup.ModelRenderer;
@@ -33,7 +37,13 @@ class BoatBehavior extends Sup.Behavior {
 
   private frozen = false;
 
+  private boatMotorSound = Sup.Audio.playSound("In-Game/Boat/Motor", 0, { loop: true });
+
+  pirateSpawnpoints: { position: Sup.Math.Vector3; angle: number; }[] = [];
+
   awake() {
+    this.actor["onDamaged"] = this.onDamaged.bind(this);
+    
     Game.boatBehavior = this;
     this.position = this.actor.getLocalPosition();
     this.angle = this.actor.getLocalEulerY();
@@ -42,9 +52,18 @@ class BoatBehavior extends Sup.Behavior {
     this.reactorRight = this.actor.getChild("Reactor Right");
     this.burstLeft = this.reactorLeft.getChild("Burst");
     this.burstRight = this.reactorRight.getChild("Burst");
+    this.lightLeft = this.reactorLeft.getChild("Light").light;
+    this.lightRight = this.reactorRight.getChild("Light").light;
     
     this.splashRndr = this.actor.getChild("Splash").modelRenderer;
     this.wheelActor = this.actor.getChild("Wheel").getChild("Model");
+    
+    let spawnpoints = this.actor.getChild("Pirates Spawns").getChildren();
+    for (let spawnpoint of spawnpoints) this.pirateSpawnpoints.push({ position: spawnpoint.getLocalPosition(), angle: spawnpoint.getLocalEulerY() });
+  }
+
+  onDamaged() {
+    Game.cameraBehavior.shake(0.8, 50);
   }
 
   setPosition(position) {
@@ -63,6 +82,10 @@ class BoatBehavior extends Sup.Behavior {
     this.acceleration = 0;
     this.rotationSpeed = 0;
     this.speed.set(0, 0, 0);
+  }
+
+  getWorldPosition() {
+    return this.position.clone().subtract(Game.boatBehavior.chunkOffset.x * Game.settings.chunkSize, 0, Game.boatBehavior.chunkOffset.z * Game.settings.chunkSize);
   }
 
   update() {
@@ -94,7 +117,7 @@ class BoatBehavior extends Sup.Behavior {
     this.speed.add(Math.sin(this.angle) * this.acceleration, 0, Math.cos(this.angle) * this.acceleration);
     this.speed.multiplyScalar(BoatBehavior.speedDrag);
     let speedLength = this.speed.length();
-    if (speedLength > BoatBehavior.maxSpeed) this.speed.multiplyScalar(BoatBehavior.maxSpeed / this.speed.length());
+    if (speedLength > BoatBehavior.maxSpeed) this.speed.multiplyScalar(BoatBehavior.maxSpeed / speedLength);
     
     let previousY = this.actor.getLocalY();
     
@@ -139,6 +162,10 @@ class BoatBehavior extends Sup.Behavior {
       this.actor.setLocalPosition(this.position);
     }
     
+    // Motor sound
+    let soundFactor = -0.1+speedLength / BoatBehavior.maxSpeed;
+    this.boatMotorSound.setVolume(soundFactor).setPitch(soundFactor);
+    
     // Animation
     this.animationTimer += 1;
     let currentY: number;
@@ -160,12 +187,18 @@ class BoatBehavior extends Sup.Behavior {
     let scaleLeft = Math.max(0.01, scale / (1 + this.rotationSpeed * 12));
     this.burstLeft.setLocalScale(scaleLeft, scaleLeft, 1);
     
+    let lightMult = scaleLeft / 300 / BoatBehavior.maxAcceleration;
+    this.lightLeft.setIntensity(  BoatBehavior.maxLightIntensity * lightMult );
+    
     this.burstRight.lookAt(Game.cameraBehavior.position);
     let scaleRight = Math.max(0.01, scale / (1 - this.rotationSpeed * 12));
     this.burstRight.setLocalScale(scaleRight, scaleRight, 1);
     
+    lightMult = scaleRight / 300 / BoatBehavior.maxAcceleration;
+    this.lightRight.setIntensity(  BoatBehavior.maxLightIntensity * lightMult );
+    
     // Particules
-    if (!this.frozen && speedLength > 0.6 * BoatBehavior.maxSpeed && targetAcceleration !== 0) {
+    if (!this.frozen && speedLength > 0.3 * BoatBehavior.maxSpeed && targetAcceleration !== 0) {
       let direction = new Sup.Math.Vector3(Math.sin(this.angle), 0, Math.cos(this.angle));
       
       let particuleLeftActor = new Sup.Actor("Particule");
@@ -173,13 +206,13 @@ class BoatBehavior extends Sup.Behavior {
       particuleLeftActor.setLocalEulerAngles(-Math.PI / 4, 0, this.angle);
       
       new Sup.SpriteRenderer(particuleLeftActor, "In-Game/Boat/Reactor/Particle").setAnimation("Animation", false);
-      this.particuleList.push({ actor: particuleLeftActor, speed: direction.clone().multiplyScalar(-12) });
+      this.particuleList.push({ actor: particuleLeftActor, speed: direction.clone().multiplyScalar(-speedLength * 8) });
       
       let particuleRightActor = new Sup.Actor("Particule");
       particuleRightActor.setLocalPosition(this.burstRight.getPosition()).moveLocal(direction.clone().multiplyScalar(8)).moveLocalY(2);
       particuleRightActor.setLocalEulerAngles(-Math.PI / 4, 0, this.angle);
       new Sup.SpriteRenderer(particuleRightActor, "In-Game/Boat/Reactor/Particle").setAnimation("Animation", false);
-      this.particuleList.push({ actor: particuleRightActor, speed: direction.clone().multiplyScalar(-12) }); 
+      this.particuleList.push({ actor: particuleRightActor, speed: direction.clone().multiplyScalar(-speedLength * 8) }); 
     }
     
     while (this.particuleList[0] != null && !this.particuleList[0].actor.spriteRenderer.isAnimationPlaying()) {

@@ -6,15 +6,17 @@ enum OctopusState {
   PrepareAttack,
   Tentacles,
   Slash,
-  Spooked,
-  Sinking
+  Stun,
+  Sinking,
+  Dead
 }
 
 class OctopusBehavior extends Sup.Behavior {
   
-  private state = OctopusState.Hidden;
+  state = OctopusState.Hidden;
 
   private modelActor: Sup.Actor;
+  private starsActor: Sup.Actor;
   private hiddenY: number;
   static risenY = 85;
   static risingDuration = 60 * 3;
@@ -36,14 +38,21 @@ class OctopusBehavior extends Sup.Behavior {
   static idleTentaclesY = -85;
 
   private aliveTentacles = 2;
+
+  static stunDuration = 60 * 10;
+  static sinkingDuration = 60 * 3;
   
   awake() {
     Game.octopusBehavior = this;
     this.actor["onDamaged"] = this.onDamaged.bind(this);
+    this.actor["onDead"] = this.onDead.bind(this);
     this.actor["onHardHit"] = this.goRising.bind(this);
     
     this.modelActor = this.actor.getChild("Model");
     this.hiddenY = this.modelActor.getLocalY();
+    
+    this.starsActor = this.actor.getChild("Stars").setVisible(true);
+    this.starsActor.setVisible(false);
     
     this.seaLineActor = this.actor.getParent().getChild("Sea Line");
     this.hiddenSeaLineScale = this.seaLineActor.getLocalScale().x;
@@ -68,6 +77,17 @@ class OctopusBehavior extends Sup.Behavior {
         if (this.timer <= 0) {
           this.state = OctopusState.Hidden;
         }
+        break;
+      }
+        
+      case OctopusState.Dead: {
+        this.timer--;
+        
+        let progress = 1 - this.timer / OctopusBehavior.risingDuration;
+        let y = Sup.Math.lerp(OctopusBehavior.risenY, this.hiddenY, progress);
+        this.modelActor.setLocalY(y);
+
+        if (this.timer <= 0) Sup.loadScene("End");
         break;
       }
         
@@ -122,8 +142,22 @@ class OctopusBehavior extends Sup.Behavior {
         if (this.timer <= 0) {
           if (this.resetIfTooFar()) return;
           
-          /*if (Sup.Math.Random.integer(0, 1) === 0) */this.goTentacles();
-          //else this.goSlash();
+          if (Sup.Math.Random.integer(0, 1) === 0) this.goTentacles();
+          else this.goSlash();
+        }
+        break;
+      }
+        
+      case OctopusState.Stun: {
+        this.timer--;
+        let x = (this.timer % 20) > 10 ? 1 : 0.4;
+        this.modelActor.modelRenderer.setColor(1, x, x);
+        
+        this.starsActor.rotateLocalEulerY(Math.PI / 64);
+        if (this.timer === 60 * 5) Game.cameraBehavior.trackBoss(false);
+        if (this.timer <= 0) {
+          this.goRiseIdleTentacles();
+          this.starsActor.setVisible(false);
         }
         break;
       }
@@ -131,27 +165,38 @@ class OctopusBehavior extends Sup.Behavior {
   }
 
   resetIfTooFar() {
-    let pos = Game.boatBehavior.position.clone().add(Game.boatBehavior.chunkOffset.x * Game.settings.chunkSize, 0, Game.boatBehavior.chunkOffset.z * Game.settings.chunkSize);
+    let pos = Game.boatBehavior.getWorldPosition();
     pos.y = 0;
     if (pos.length() > 150) {
+      Game.musicPlayBoss.stop();
+      Game.musicPlay.play();
       this.state = OctopusState.Sinking;
+      this.timer = OctopusBehavior.sinkingDuration;
       Game.cameraBehavior.trackBoss(false);
       this.idleTentaclesActor.setLocalY(this.idleTentaclesHiddenY);
       return true;
     }
+    
     return false;
   }
 
   onDamaged() {
-    if (this.state === OctopusState.Hidden) this.goRising();
-    else {
-      // TODO: State.Stun & tout
+    if (this.state === OctopusState.Hidden) {
+      this.goRising();
+    } else if (this.state === OctopusState.Stun) {
+      Game.cameraBehavior.shake(1, 30);
     }
+  }
+
+  onDead() {
+    this.state = OctopusState.Dead;
+    this.starsActor.setVisible(false);
   }
 
   goRising() {
     if (this.state !== OctopusState.Hidden) return;
-    
+    Game.musicPlay.stop();
+    Game.musicPlayBoss.play();
     this.hasJustRisen = true;
     
     this.state = OctopusState.Rising;
@@ -195,12 +240,38 @@ class OctopusBehavior extends Sup.Behavior {
     
     if (this.aliveTentacles === 0) {
       Game.boatBehavior.unfreeze();
-      this.goRiseIdleTentacles();
+      this.goStun();
+      
+      //this.goRiseIdleTentacles();
     }
+  }
+
+  goStun() {
+    this.state = OctopusState.Stun;
+    Game.cameraBehavior.trackBoss(true);
+    this.timer = OctopusBehavior.stunDuration;
+    this.starsActor.setVisible(true);
   }
 
   goSlash() {
     this.state = OctopusState.Slash;
+    
+    let slashTentacle = Sup.appendScene("In-Game/Slash Tentacle/Prefab", this.actor)[0];
+    
+    let boatPos = Game.boatBehavior.getWorldPosition();
+    let angle = Math.atan2(boatPos.x, boatPos.z);
+    let distance = 42;
+    slashTentacle.setLocalPosition(Math.sin(angle) * distance, -10, Math.cos(angle) * distance);
+    slashTentacle.setLocalEulerY(angle);
+  }
+
+  goEnd() {
+    this.state = OctopusState.Dead;
+    this.timer = OctopusBehavior.sinkingDuration;
+  }
+
+  onSlashOver() {
+    this.goRiseIdleTentacles();
   }
 }
 Sup.registerBehavior(OctopusBehavior);
