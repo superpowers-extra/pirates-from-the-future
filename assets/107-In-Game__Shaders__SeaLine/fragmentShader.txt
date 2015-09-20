@@ -1,0 +1,52 @@
+uniform sampler2D map;
+varying vec2 vUv;
+uniform float time;
+uniform vec4 speeds;
+
+float rad2deg = 57.295779513082320876798154814105;
+float deg2rad = 0.01745329251994329576923690768489;
+float pi = 3.1415926535897932384626433832795;
+float pi2 = 6.283185307179586476925286766559;
+
+void main() {
+  vec2 mUV = vUv;
+  vec4 times = speeds * time + speeds*569.8742;
+  times = fract( times / pi2 );
+  
+  vec4 c= vec4(0.0);
+  vec4 t;
+  
+  for ( int i=0 ; i<4 ; i++)
+  {
+    mUV = vUv;
+    mUV.y -= 0.5 - cos(times[i]*pi2) * 0.5 ;
+  
+    if ( mUV.y > -0.05 ) continue;
+    
+    mUV.x += 0.25*float(i);
+    
+    float modT = times[i] * 1.3;
+    
+    if ( modT > 1.0 ) continue;
+    
+    
+    t = texture2D(map, mUV);
+    
+    if ( t.a == 0.0 ) continue;
+    
+    t.a *= 0.5 - cos( modT * pi2 )*0.5;
+    
+    t.a *= vUv.y * 2.0;
+    
+    if ( c.a==0.0 ) c.rgb = t.rgb;
+    else
+    {
+      c.rgb = mix( c.rgb, t.rgb, t.a );
+    }
+    c.a += t.a;
+  }
+  
+  //if ( vUv.y >= 0.98 )c=vec4(1.0, 0.0, 0.0, 1.0);
+  
+  gl_FragColor = c;
+}

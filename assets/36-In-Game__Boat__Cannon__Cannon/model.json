@@ -2,7 +2,9 @@
   "unitRatio": 1,
   "upAxisMatrix": null,
   "attributes": [
-    "position"
+    "uv",
+    "position",
+    "normal"
   ],
   "bones": null,
   "maps": [
@@ -17,5 +19,7 @@
     "specular": null,
     "alpha": null,
     "normal": null
-  }
+  },
+  "filtering": "pixelated",
+  "wrapping": "clampToEdge"
 }

@@ -1,0 +1,232 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Camera",
+      "children": [
+        {
+          "id": "0",
+          "name": "Window",
+          "children": [
+            {
+              "id": "2",
+              "name": "Buttons",
+              "children": [],
+              "components": [],
+              "position": {
+                "x": 6.031439781188965,
+                "y": -3.4540038108825684,
+                "z": 0.5
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "3",
+              "name": "Dialogue",
+              "children": [],
+              "components": [
+                {
+                  "type": "TextRenderer",
+                  "config": {
+                    "fontAssetId": "58",
+                    "text": "Text",
+                    "alignment": "left",
+                    "size": null,
+                    "color": null,
+                    "verticalAlignment": "top"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -5.7251129150390625,
+                "y": 2.7561569213867188,
+                "z": 0.5
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "4",
+              "name": "Avatar",
+              "children": [],
+              "components": [],
+              "position": {
+                "x": -1.7032579183578491,
+                "y": 0.23859693109989166,
+                "z": 14.723892211914062
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            },
+            {
+              "id": "5",
+              "name": "NomPersonnage",
+              "children": [],
+              "components": [
+                {
+                  "type": "TextRenderer",
+                  "config": {
+                    "fontAssetId": "58",
+                    "text": "Text",
+                    "alignment": "left",
+                    "size": null,
+                    "color": "d72da4",
+                    "verticalAlignment": "top"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": -5.7251129150390625,
+                "y": 3.814274787902832,
+                "z": 0.5
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 1,
+                "y": 1,
+                "z": 1
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
+            }
+          ],
+          "components": [
+            {
+              "type": "SpriteRenderer",
+              "config": {
+                "spriteAssetId": "23",
+                "animationId": null,
+                "horizontalFlip": false,
+                "verticalFlip": false,
+                "castShadow": false,
+                "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
+                "materialType": "basic",
+                "shaderAssetId": null
+              },
+              "id": "0"
+            },
+            {
+              "type": "Behavior",
+              "config": {
+                "behaviorName": "DialogueBehavior",
+                "propertyValues": {
+                  "keyName": {
+                    "type": "string",
+                    "value": "test1"
+                  }
+                }
+              },
+              "id": "1"
+            }
+          ],
+          "position": {
+            "x": 0,
+            "y": 0,
+            "z": -4
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        }
+      ],
+      "components": [
+        {
+          "type": "Camera",
+          "config": {
+            "mode": "orthographic",
+            "fov": 45,
+            "orthographicScale": 10,
+            "viewport": {
+              "x": 0,
+              "y": 0,
+              "width": 1,
+              "height": 1
+            },
+            "depth": 0,
+            "nearClippingPlane": 0.1,
+            "farClippingPlane": 1000
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 4
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    }
+  ]
+}

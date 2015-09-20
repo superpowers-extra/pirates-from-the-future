@@ -14,13 +14,13 @@
               "config": {
                 "modelAssetId": "37",
                 "animationId": null,
-                "castShadow": false,
-                "receiveShadow": false,
+                "castShadow": true,
+                "receiveShadow": true,
                 "color": "ffffff",
                 "overrideOpacity": false,
                 "opacity": null,
-                "materialType": "basic",
-                "shaderAssetId": null
+                "materialType": "shader",
+                "shaderAssetId": "87"
               },
               "id": "0"
             }
@@ -32,14 +32,14 @@
           },
           "orientation": {
             "x": 0,
-            "y": 0,
+            "y": 1,
             "z": 0,
-            "w": 1
+            "w": 6.123233995736766e-17
           },
           "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
+            "x": 7,
+            "y": 7,
+            "z": 7
           },
           "visible": true,
           "layer": 0,
@@ -55,32 +55,32 @@
               "config": {
                 "modelAssetId": "36",
                 "animationId": null,
-                "castShadow": false,
-                "receiveShadow": false,
+                "castShadow": true,
+                "receiveShadow": true,
                 "color": "ffffff",
                 "overrideOpacity": false,
                 "opacity": null,
-                "materialType": "basic",
-                "shaderAssetId": null
+                "materialType": "shader",
+                "shaderAssetId": "87"
               },
               "id": "0"
             }
           ],
           "position": {
             "x": 0,
-            "y": 2.5,
-            "z": 0
+            "y": 1.385009765625,
+            "z": -0.28225377202033997
           },
           "orientation": {
-            "x": 0,
-            "y": 0,
-            "z": 0,
-            "w": 1
+            "x": 1.0029220784145098e-17,
+            "y": 0.9864952927741509,
+            "z": 0.16378960239324006,
+            "w": 6.040541868864659e-17
           },
           "scale": {
-            "x": 1,
-            "y": 1,
-            "z": 1
+            "x": 7,
+            "y": 7,
+            "z": 7
           },
           "visible": true,
           "layer": 0,
@@ -93,8 +93,8 @@
           "components": [],
           "position": {
             "x": 0,
-            "y": 0,
-            "z": 3
+            "y": -0.5,
+            "z": 4.62
           },
           "orientation": {
             "x": 0,
@@ -118,8 +118,8 @@
           "components": [],
           "position": {
             "x": 0,
-            "y": 5,
-            "z": -1
+            "y": 4,
+            "z": 1.6
           },
           "orientation": {
             "x": 0,
@@ -143,8 +143,8 @@
           "components": [],
           "position": {
             "x": 0,
-            "y": 2.5,
-            "z": -3.7
+            "y": 2.3073465824127197,
+            "z": -2.645294189453125
           },
           "orientation": {
             "x": 0,
@@ -170,6 +170,23 @@
             "propertyValues": {}
           },
           "id": "0"
+        },
+        {
+          "type": "Behavior",
+          "config": {
+            "behaviorName": "CircleColliderBehavior",
+            "propertyValues": {
+              "onboard": {
+                "type": "boolean",
+                "value": true
+              },
+              "radius": {
+                "type": "number",
+                "value": 3.5
+              }
+            }
+          },
+          "id": "1"
         }
       ],
       "position": {
@@ -184,9 +201,9 @@
         "w": 1
       },
       "scale": {
-        "x": 1,
-        "y": 1,
-        "z": 1
+        "x": 1.2,
+        "y": 1.2,
+        "z": 1.2
       },
       "visible": true,
       "layer": 0,

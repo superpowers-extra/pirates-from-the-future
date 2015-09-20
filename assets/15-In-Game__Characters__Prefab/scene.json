@@ -14,7 +14,7 @@
               "config": {
                 "modelAssetId": "12",
                 "animationId": null,
-                "castShadow": false,
+                "castShadow": true,
                 "receiveShadow": false,
                 "color": "2c39ba",
                 "overrideOpacity": false,
@@ -76,6 +76,47 @@
             "y": 0,
             "z": 0,
             "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        },
+        {
+          "id": "3",
+          "name": "Weapon",
+          "children": [],
+          "components": [
+            {
+              "type": "ModelRenderer",
+              "config": {
+                "modelAssetId": "105",
+                "animationId": null,
+                "castShadow": false,
+                "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
+                "materialType": "basic",
+                "shaderAssetId": null
+              },
+              "id": "0"
+            }
+          ],
+          "position": {
+            "x": -2,
+            "y": 2,
+            "z": 0
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0.7071067811865475,
+            "z": 0,
+            "w": 0.7071067811865476
           },
           "scale": {
             "x": 1,

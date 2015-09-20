@@ -3,51 +3,7 @@
     {
       "id": "0",
       "name": "Camera",
-      "children": [
-        {
-          "id": "1",
-          "name": "Water",
-          "children": [],
-          "components": [
-            {
-              "type": "SpriteRenderer",
-              "config": {
-                "spriteAssetId": "3",
-                "animationId": null,
-                "horizontalFlip": false,
-                "verticalFlip": false,
-                "castShadow": false,
-                "receiveShadow": false,
-                "color": "ffffff",
-                "overrideOpacity": false,
-                "opacity": null,
-                "materialType": "phong",
-                "shaderAssetId": null
-              },
-              "id": "0"
-            }
-          ],
-          "position": {
-            "x": 0,
-            "y": -5.592862606048584,
-            "z": -138.90184020996094
-          },
-          "orientation": {
-            "x": 0.9396926193935132,
-            "y": 0,
-            "z": 0,
-            "w": 0.3420201574751363
-          },
-          "scale": {
-            "x": 2000,
-            "y": 2000.0000484059485,
-            "z": 1.0000000124717339
-          },
-          "visible": true,
-          "layer": 0,
-          "prefabId": null
-        }
-      ],
+      "children": [],
       "components": [
         {
           "type": "Camera",
@@ -79,7 +35,7 @@
           "type": "Light",
           "config": {
             "type": "ambient",
-            "color": "cfcfcf",
+            "color": "073354",
             "intensity": 1,
             "distance": 0,
             "angle": 60,
@@ -106,6 +62,14 @@
             }
           },
           "id": "3"
+        },
+        {
+          "type": "Behavior",
+          "config": {
+            "behaviorName": "WaveAIManagerBehavior",
+            "propertyValues": {}
+          },
+          "id": "4"
         }
       ],
       "position": {
@@ -129,12 +93,111 @@
       "prefabId": null
     },
     {
+      "id": "1",
+      "name": "Water",
+      "children": [],
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "config": {
+            "modelAssetId": "18",
+            "animationId": null,
+            "castShadow": false,
+            "receiveShadow": true,
+            "color": "ffffff",
+            "overrideOpacity": false,
+            "opacity": null,
+            "materialType": "shader",
+            "shaderAssetId": "26"
+          },
+          "id": "1"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": -0.0000050341186579316854,
+        "z": -0.000004119824097870151
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    },
+    {
+      "id": "7",
+      "name": "Directional Light",
+      "children": [],
+      "components": [
+        {
+          "type": "Light",
+          "config": {
+            "type": "directional",
+            "color": "fef79c",
+            "intensity": 0.7,
+            "distance": 0,
+            "angle": 60,
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castShadow": true,
+            "shadowMapSize": {
+              "width": 2048,
+              "height": 2048
+            },
+            "shadowBias": 0.001,
+            "shadowDarkness": 0.3,
+            "shadowCameraNearPlane": 0.1,
+            "shadowCameraFarPlane": 100,
+            "shadowCameraFov": 50,
+            "shadowCameraSize": {
+              "top": 100,
+              "bottom": -100,
+              "left": -100,
+              "right": 100
+            }
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": 15,
+        "y": 29.07667350769043,
+        "z": 10.094996452331543
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    },
+    {
       "id": "8",
       "name": "Boat",
       "children": [],
       "components": [],
       "position": {
-        "x": 0,
+        "x": 0.0003702770627569407,
         "y": 0,
         "z": 0
       },
@@ -154,90 +217,14 @@
       "prefabId": "28"
     },
     {
-      "id": "4",
-      "name": "TEMP Waypoint",
+      "id": "9",
+      "name": "HUD",
       "children": [],
-      "components": [
-        {
-          "type": "SpriteRenderer",
-          "config": {
-            "spriteAssetId": "3",
-            "animationId": null,
-            "horizontalFlip": false,
-            "verticalFlip": false,
-            "castShadow": false,
-            "receiveShadow": false,
-            "color": "c10b42",
-            "overrideOpacity": false,
-            "opacity": null,
-            "materialType": "basic",
-            "shaderAssetId": null
-          },
-          "id": "0"
-        }
-      ],
+      "components": [],
       "position": {
-        "x": 23,
-        "y": 1,
-        "z": -12
-      },
-      "orientation": {
         "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "scale": {
-        "x": 5,
-        "y": 10,
-        "z": 1
-      },
-      "visible": true,
-      "layer": 0,
-      "prefabId": null
-    },
-    {
-      "id": "7",
-      "name": "Light",
-      "children": [],
-      "components": [
-        {
-          "type": "Light",
-          "config": {
-            "type": "spot",
-            "color": "ffffff",
-            "intensity": 0.5,
-            "distance": 0,
-            "angle": 60,
-            "target": {
-              "x": 0,
-              "y": 0,
-              "z": 0
-            },
-            "castShadow": false,
-            "shadowMapSize": {
-              "width": 512,
-              "height": 512
-            },
-            "shadowBias": 0,
-            "shadowDarkness": 0.5,
-            "shadowCameraNearPlane": 0.1,
-            "shadowCameraFarPlane": 1000,
-            "shadowCameraFov": 50,
-            "shadowCameraSize": {
-              "top": 100,
-              "bottom": -100,
-              "left": -100,
-              "right": 100
-            }
-          },
-          "id": "0"
-        }
-      ],
-      "position": {
-        "x": 15,
-        "y": 23,
-        "z": 10.095
+        "y": 1000,
+        "z": 0
       },
       "orientation": {
         "x": 0,
@@ -252,7 +239,7 @@
       },
       "visible": true,
       "layer": 0,
-      "prefabId": null
+      "prefabId": "99"
     }
   ]
 }

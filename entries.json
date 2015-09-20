@@ -5,9 +5,48 @@
     "type": "script"
   },
   {
-    "id": "9",
-    "name": "Input",
-    "type": "script"
+    "id": "66",
+    "name": "Util",
+    "type": null,
+    "children": [
+      {
+        "id": "9",
+        "name": "Input",
+        "type": "script"
+      },
+      {
+        "id": "65",
+        "name": "ConstructeurDeGroupe",
+        "type": "script"
+      }
+    ]
+  },
+  {
+    "id": "74",
+    "name": "TextData",
+    "type": null,
+    "children": [
+      {
+        "id": "64",
+        "name": "Text Data",
+        "type": "script"
+      },
+      {
+        "id": "75",
+        "name": "FR",
+        "type": "script"
+      },
+      {
+        "id": "76",
+        "name": "EN",
+        "type": "script"
+      },
+      {
+        "id": "164",
+        "name": "Dialogues Data",
+        "type": "script"
+      }
+    ]
   },
   {
     "id": "2",
@@ -15,19 +54,19 @@
     "type": null,
     "children": [
       {
-        "id": "8",
-        "name": "Game",
-        "type": "script"
-      },
-      {
         "id": "1",
         "name": "Scene",
         "type": "scene"
       },
       {
-        "id": "3",
-        "name": "Water TMP",
-        "type": "sprite"
+        "id": "8",
+        "name": "Game",
+        "type": "script"
+      },
+      {
+        "id": "46",
+        "name": "Generate World",
+        "type": "script"
       },
       {
         "id": "7",
@@ -40,36 +79,14 @@
         "type": "script"
       },
       {
-        "id": "14",
-        "name": "Characters",
-        "type": null,
-        "children": [
-          {
-            "id": "15",
-            "name": "Prefab",
-            "type": "scene"
-          },
-          {
-            "id": "16",
-            "name": "Character Behavior",
-            "type": "script"
-          },
-          {
-            "id": "12",
-            "name": "Character 1",
-            "type": "model"
-          },
-          {
-            "id": "13",
-            "name": "Character 2",
-            "type": "model"
-          },
-          {
-            "id": "32",
-            "name": "Interactive Marker",
-            "type": "model"
-          }
-        ]
+        "id": "115",
+        "name": "Circle Collider Behavior",
+        "type": "script"
+      },
+      {
+        "id": "125",
+        "name": "Damageable Behavior",
+        "type": "script"
       },
       {
         "id": "5",
@@ -102,6 +119,11 @@
             "type": "model"
           },
           {
+            "id": "163",
+            "name": "Wheel Support",
+            "type": "model"
+          },
+          {
             "id": "35",
             "name": "Cannon",
             "type": null,
@@ -127,6 +149,31 @@
                 "type": "model"
               },
               {
+                "id": "142",
+                "name": "Fx Charge",
+                "type": "sprite"
+              },
+              {
+                "id": "150",
+                "name": "Fx Explose",
+                "type": "sprite"
+              },
+              {
+                "id": "153",
+                "name": "Fx Purple",
+                "type": "model"
+              },
+              {
+                "id": "154",
+                "name": "Fx Yellow",
+                "type": "model"
+              },
+              {
+                "id": "156",
+                "name": "Cannon Fx",
+                "type": "script"
+              },
+              {
                 "id": "47",
                 "name": "Cannon Ball",
                 "type": null,
@@ -140,10 +187,94 @@
                     "id": "49",
                     "name": "Cannon Ball Behavior",
                     "type": "script"
+                  },
+                  {
+                    "id": "144",
+                    "name": "Sprite",
+                    "type": "sprite"
+                  },
+                  {
+                    "id": "147",
+                    "name": "Model",
+                    "type": "model"
                   }
                 ]
               }
             ]
+          },
+          {
+            "id": "122",
+            "name": "Reactor",
+            "type": null,
+            "children": [
+              {
+                "id": "120",
+                "name": "Prefab",
+                "type": "scene"
+              },
+              {
+                "id": "114",
+                "name": "Model",
+                "type": "model"
+              },
+              {
+                "id": "121",
+                "name": "Fx",
+                "type": "sprite"
+              },
+              {
+                "id": "123",
+                "name": "Particle",
+                "type": "sprite"
+              }
+            ]
+          },
+          {
+            "id": "139",
+            "name": "Splash",
+            "type": "model"
+          },
+          {
+            "id": "140",
+            "name": "SplashShader",
+            "type": "shader"
+          }
+        ]
+      },
+      {
+        "id": "14",
+        "name": "Characters",
+        "type": null,
+        "children": [
+          {
+            "id": "15",
+            "name": "Prefab",
+            "type": "scene"
+          },
+          {
+            "id": "16",
+            "name": "Character Behavior",
+            "type": "script"
+          },
+          {
+            "id": "12",
+            "name": "Character 1",
+            "type": "model"
+          },
+          {
+            "id": "13",
+            "name": "Character 2",
+            "type": "model"
+          },
+          {
+            "id": "32",
+            "name": "Interactive Marker",
+            "type": "model"
+          },
+          {
+            "id": "105",
+            "name": "Sword",
+            "type": "model"
           }
         ]
       },
@@ -154,7 +285,7 @@
         "children": [
           {
             "id": "27",
-            "name": "WaterTest",
+            "name": "Prefab",
             "type": "scene"
           },
           {
@@ -164,8 +295,301 @@
           },
           {
             "id": "26",
-            "name": "WaterShader",
+            "name": "Water Shader",
             "type": "shader"
+          }
+        ]
+      },
+      {
+        "id": "86",
+        "name": "Shaders",
+        "type": null,
+        "children": [
+          {
+            "id": "88",
+            "name": "Viewer",
+            "type": "scene"
+          },
+          {
+            "id": "87",
+            "name": "BaseShader",
+            "type": "shader"
+          },
+          {
+            "id": "107",
+            "name": "SeaLine",
+            "type": "shader"
+          }
+        ]
+      },
+      {
+        "id": "42",
+        "name": "Chunks",
+        "type": null,
+        "children": [
+          {
+            "id": "50",
+            "name": "Islands",
+            "type": null,
+            "children": [
+              {
+                "id": "102",
+                "name": "Start",
+                "type": null,
+                "children": [
+                  {
+                    "id": "80",
+                    "name": "Prefab",
+                    "type": "scene"
+                  },
+                  {
+                    "id": "72",
+                    "name": "Model",
+                    "type": "model"
+                  }
+                ]
+              },
+              {
+                "id": "103",
+                "name": "Tortuga",
+                "type": null,
+                "children": [
+                  {
+                    "id": "96",
+                    "name": "Prefab",
+                    "type": "scene"
+                  },
+                  {
+                    "id": "110",
+                    "name": "TestRendu",
+                    "type": "scene"
+                  },
+                  {
+                    "id": "91",
+                    "name": "Model",
+                    "type": "model"
+                  },
+                  {
+                    "id": "104",
+                    "name": "SeaLine",
+                    "type": "model"
+                  }
+                ]
+              },
+              {
+                "id": "117",
+                "name": "Island_01",
+                "type": null,
+                "children": [
+                  {
+                    "id": "118",
+                    "name": "Island_01",
+                    "type": "model"
+                  },
+                  {
+                    "id": "119",
+                    "name": "Sea_Line_01",
+                    "type": "model"
+                  },
+                  {
+                    "id": "126",
+                    "name": "Island_01 (1)",
+                    "type": "scene"
+                  }
+                ]
+              },
+              {
+                "id": "130",
+                "name": "Island_02",
+                "type": null,
+                "children": [
+                  {
+                    "id": "132",
+                    "name": "Island_02",
+                    "type": "model"
+                  },
+                  {
+                    "id": "134",
+                    "name": "Sea_Line_02",
+                    "type": "model"
+                  },
+                  {
+                    "id": "135",
+                    "name": "Island_02 (1)",
+                    "type": "scene"
+                  }
+                ]
+              },
+              {
+                "id": "169",
+                "name": "Island_03",
+                "type": null,
+                "children": [
+                  {
+                    "id": "170",
+                    "name": "Island_03",
+                    "type": "model"
+                  },
+                  {
+                    "id": "171",
+                    "name": "Sea_Line_03",
+                    "type": "model"
+                  },
+                  {
+                    "id": "172",
+                    "name": "Cabane",
+                    "type": "model"
+                  },
+                  {
+                    "id": "173",
+                    "name": "Island_03 (1)",
+                    "type": "scene"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "52",
+            "name": "Monster",
+            "type": null,
+            "children": [
+              {
+                "id": "77",
+                "name": "Prefab",
+                "type": "scene"
+              },
+              {
+                "id": "165",
+                "name": "Octopus",
+                "type": null,
+                "children": [
+                  {
+                    "id": "146",
+                    "name": "Octopus",
+                    "type": "model"
+                  },
+                  {
+                    "id": "166",
+                    "name": "Right_Eye",
+                    "type": "model"
+                  },
+                  {
+                    "id": "167",
+                    "name": "Left_Eye",
+                    "type": "model"
+                  },
+                  {
+                    "id": "168",
+                    "name": "SeaLine_Octopus",
+                    "type": "model"
+                  }
+                ]
+              },
+              {
+                "id": "155",
+                "name": "Idle Tentacle",
+                "type": "model"
+              },
+              {
+                "id": "113",
+                "name": "Big Chest",
+                "type": "model"
+              },
+              {
+                "id": "148",
+                "name": "Big Chest Behavior",
+                "type": "script"
+              },
+              {
+                "id": "149",
+                "name": "Octopus Behavior",
+                "type": "script"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "160",
+        "name": "Boat Tentacle",
+        "type": null,
+        "children": [
+          {
+            "id": "158",
+            "name": "Prefab",
+            "type": "scene"
+          },
+          {
+            "id": "159",
+            "name": "Boat Tentacle Behavior",
+            "type": "script"
+          }
+        ]
+      },
+      {
+        "id": "98",
+        "name": "HUD",
+        "type": null,
+        "children": [
+          {
+            "id": "99",
+            "name": "Prefab",
+            "type": "scene"
+          },
+          {
+            "id": "92",
+            "name": "World Map",
+            "type": null,
+            "children": [
+              {
+                "id": "100",
+                "name": "World Map Behavior",
+                "type": "script"
+              },
+              {
+                "id": "93",
+                "name": "Tile Set",
+                "type": "tileSet"
+              },
+              {
+                "id": "94",
+                "name": "Map",
+                "type": "tileMap"
+              },
+              {
+                "id": "101",
+                "name": "Boat",
+                "type": "sprite"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "174",
+        "name": "Health Bar",
+        "type": null,
+        "children": [
+          {
+            "id": "175",
+            "name": "Prefab",
+            "type": "scene"
+          },
+          {
+            "id": "176",
+            "name": "Background",
+            "type": "sprite"
+          },
+          {
+            "id": "177",
+            "name": "Fill Friendly",
+            "type": "sprite"
+          },
+          {
+            "id": "178",
+            "name": "Fill Enemy",
+            "type": "sprite"
           }
         ]
       }
@@ -178,8 +602,30 @@
     "children": [
       {
         "id": "11",
-        "name": "Scene",
+        "name": "HUD",
         "type": "scene"
+      },
+      {
+        "id": "67",
+        "name": "Class",
+        "type": null,
+        "children": [
+          {
+            "id": "62",
+            "name": "Dialogue",
+            "type": "script"
+          },
+          {
+            "id": "54",
+            "name": "TextEffect",
+            "type": "script"
+          }
+        ]
+      },
+      {
+        "id": "61",
+        "name": "HUDBehavior",
+        "type": "script"
       },
       {
         "id": "20",
@@ -189,11 +635,6 @@
       {
         "id": "40",
         "name": "Button",
-        "type": "script"
-      },
-      {
-        "id": "54",
-        "name": "TextEffect",
         "type": "script"
       },
       {
@@ -222,8 +663,45 @@
             "type": "sprite"
           }
         ]
+      },
+      {
+        "id": "109",
+        "name": "Dialog",
+        "type": "scene"
       }
     ]
+  },
+  {
+    "id": "56",
+    "name": "Credits",
+    "type": null,
+    "children": [
+      {
+        "id": "57",
+        "name": "Scene",
+        "type": "scene"
+      },
+      {
+        "id": "59",
+        "name": "Credits Behavior",
+        "type": "script"
+      },
+      {
+        "id": "58",
+        "name": "Font",
+        "type": "font"
+      }
+    ]
+  },
+  {
+    "id": "128",
+    "name": "Wave AI Manager",
+    "type": "script"
+  },
+  {
+    "id": "138",
+    "name": "BarkAI",
+    "type": "script"
   },
   {
     "id": "21",
@@ -231,47 +709,13 @@
     "type": "script"
   },
   {
-    "id": "42",
-    "name": "Chunk",
-    "type": null,
-    "children": [
-      {
-        "id": "43",
-        "name": "Scenes Prefab",
-        "type": null,
-        "children": [
-          {
-            "id": "50",
-            "name": "Islands",
-            "type": null,
-            "children": []
-          },
-          {
-            "id": "51",
-            "name": "Sea",
-            "type": null,
-            "children": []
-          },
-          {
-            "id": "52",
-            "name": "MonsterIslands",
-            "type": null,
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "44",
-        "name": "Generator",
-        "type": null,
-        "children": [
-          {
-            "id": "46",
-            "name": "Chunk Generator",
-            "type": "script"
-          }
-        ]
-      }
-    ]
+    "id": "129",
+    "name": "Wave AI Prefab",
+    "type": "scene"
+  },
+  {
+    "id": "137",
+    "name": "Tombe",
+    "type": "model"
   }
 ]

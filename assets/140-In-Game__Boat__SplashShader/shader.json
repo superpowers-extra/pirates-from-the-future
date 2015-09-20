@@ -1,0 +1,64 @@
+{
+  "uniforms": [
+    {
+      "id": "0",
+      "name": "map",
+      "type": "t",
+      "value": "map"
+    },
+    {
+      "id": "1",
+      "name": "factor",
+      "type": "f",
+      "value": 1
+    },
+    {
+      "id": "2",
+      "name": "uvSpeed",
+      "type": "f",
+      "value": 0.5
+    },
+    {
+      "id": "3",
+      "name": "noiseAxises",
+      "type": "v3",
+      "value": [
+        0.3,
+        0.15,
+        0.1
+      ]
+    },
+    {
+      "id": "4",
+      "name": "noiseFactor",
+      "type": "f",
+      "value": 3
+    },
+    {
+      "id": "5",
+      "name": "moveDirection",
+      "type": "f",
+      "value": 0
+    },
+    {
+      "id": "6",
+      "name": "sideFactor",
+      "type": "f",
+      "value": 1
+    },
+    {
+      "id": "7",
+      "name": "yMultiplier",
+      "type": "f",
+      "value": 1.7
+    }
+  ],
+  "useLightUniforms": false,
+  "attributes": [],
+  "vertexShader": {
+    "revisionId": 761
+  },
+  "fragmentShader": {
+    "revisionId": 323
+  }
+}

@@ -14,21 +14,21 @@
               "config": {
                 "modelAssetId": "6",
                 "animationId": null,
-                "castShadow": false,
-                "receiveShadow": false,
-                "color": "ffffff",
+                "castShadow": true,
+                "receiveShadow": true,
+                "color": "efbab4",
                 "overrideOpacity": false,
                 "opacity": null,
-                "materialType": "phong",
-                "shaderAssetId": null
+                "materialType": "shader",
+                "shaderAssetId": "87"
               },
               "id": "0"
             }
           ],
           "position": {
             "x": 0,
-            "y": 0,
-            "z": 10
+            "y": 3,
+            "z": 6
           },
           "orientation": {
             "x": 0,
@@ -37,9 +37,9 @@
             "w": 1
           },
           "scale": {
-            "x": 12,
-            "y": 12,
-            "z": 12
+            "x": 10,
+            "y": 10,
+            "z": 10
           },
           "visible": true,
           "layer": 0,
@@ -56,7 +56,7 @@
               "components": [],
               "position": {
                 "x": 0,
-                "y": 0,
+                "y": -3,
                 "z": -3
               },
               "orientation": {
@@ -73,24 +73,50 @@
               "visible": true,
               "layer": 0,
               "prefabId": null
+            },
+            {
+              "id": "17",
+              "name": "Model",
+              "children": [],
+              "components": [
+                {
+                  "type": "ModelRenderer",
+                  "config": {
+                    "modelAssetId": "30",
+                    "animationId": null,
+                    "castShadow": true,
+                    "receiveShadow": true,
+                    "color": "ffffff",
+                    "overrideOpacity": false,
+                    "opacity": null,
+                    "materialType": "shader",
+                    "shaderAssetId": "87"
+                  },
+                  "id": "0"
+                }
+              ],
+              "position": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "orientation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+              },
+              "scale": {
+                "x": 16,
+                "y": 16,
+                "z": 16
+              },
+              "visible": true,
+              "layer": 0,
+              "prefabId": null
             }
           ],
           "components": [
-            {
-              "type": "ModelRenderer",
-              "config": {
-                "modelAssetId": "30",
-                "animationId": null,
-                "castShadow": false,
-                "receiveShadow": false,
-                "color": "ffffff",
-                "overrideOpacity": false,
-                "opacity": null,
-                "materialType": "basic",
-                "shaderAssetId": null
-              },
-              "id": "0"
-            },
             {
               "type": "Behavior",
               "config": {
@@ -98,12 +124,29 @@
                 "propertyValues": {}
               },
               "id": "1"
+            },
+            {
+              "type": "Behavior",
+              "config": {
+                "behaviorName": "CircleColliderBehavior",
+                "propertyValues": {
+                  "onboard": {
+                    "type": "boolean",
+                    "value": true
+                  },
+                  "radius": {
+                    "type": "number",
+                    "value": 1
+                  }
+                }
+              },
+              "id": "2"
             }
           ],
           "position": {
-            "x": 0,
-            "y": 11.5,
-            "z": -14
+            "x": 0.02800000086426735,
+            "y": 12.718605995178223,
+            "z": -7.873956203460693
           },
           "orientation": {
             "x": 0,
@@ -121,20 +164,61 @@
           "prefabId": null
         },
         {
-          "id": "6",
-          "name": "Cannon",
+          "id": "16",
+          "name": "Wheel Support",
           "children": [],
-          "components": [],
+          "components": [
+            {
+              "type": "ModelRenderer",
+              "config": {
+                "modelAssetId": "163",
+                "animationId": null,
+                "castShadow": true,
+                "receiveShadow": true,
+                "color": "ffffff",
+                "overrideOpacity": false,
+                "opacity": null,
+                "materialType": "shader",
+                "shaderAssetId": "87"
+              },
+              "id": "0"
+            }
+          ],
           "position": {
-            "x": 0,
-            "y": 14,
-            "z": 51
+            "x": 0.02800000086426735,
+            "y": 9.313343048095703,
+            "z": -7.886115074157715
           },
           "orientation": {
             "x": 0,
-            "y": 1,
+            "y": 0,
             "z": 0,
-            "w": 6.123234262925839e-17
+            "w": 1
+          },
+          "scale": {
+            "x": 13,
+            "y": 13,
+            "z": 8
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
+        },
+        {
+          "id": "6",
+          "name": "Left Cannon",
+          "children": [],
+          "components": [],
+          "position": {
+            "x": 8,
+            "y": 10.4,
+            "z": 22
+          },
+          "orientation": {
+            "x": 0,
+            "y": -0.9238795325112867,
+            "z": 0,
+            "w": 0.38268343236508984
           },
           "scale": {
             "x": 1,
@@ -147,19 +231,19 @@
         },
         {
           "id": "7",
-          "name": "Cannon 2",
+          "name": "Right Cannon",
           "children": [],
           "components": [],
           "position": {
-            "x": -12.29954719543457,
-            "y": 11.387288093566895,
-            "z": 30.177093505859375
+            "x": -8,
+            "y": 10.4,
+            "z": 22
           },
           "orientation": {
             "x": 0,
-            "y": 0.8463848909007372,
+            "y": 0.9238795325112867,
             "z": 0,
-            "w": 0.5325716912002825
+            "w": 0.38268343236508984
           },
           "scale": {
             "x": 1,
@@ -169,6 +253,97 @@
           "visible": true,
           "layer": 0,
           "prefabId": "39"
+        },
+        {
+          "id": "12",
+          "name": "Reactor Left",
+          "children": [],
+          "components": [],
+          "position": {
+            "x": 18,
+            "y": 6,
+            "z": -1.5
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": "120"
+        },
+        {
+          "id": "13",
+          "name": "Reactor Right",
+          "children": [],
+          "components": [],
+          "position": {
+            "x": -18,
+            "y": 6,
+            "z": -1.5
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": "120"
+        },
+        {
+          "id": "15",
+          "name": "Splash",
+          "children": [],
+          "components": [
+            {
+              "type": "ModelRenderer",
+              "config": {
+                "modelAssetId": "139",
+                "animationId": null,
+                "castShadow": false,
+                "receiveShadow": false,
+                "color": "ffffff",
+                "overrideOpacity": true,
+                "opacity": null,
+                "materialType": "shader",
+                "shaderAssetId": "140"
+              },
+              "id": "0"
+            }
+          ],
+          "position": {
+            "x": 0,
+            "y": 3,
+            "z": 6
+          },
+          "orientation": {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "w": 1
+          },
+          "scale": {
+            "x": 10,
+            "y": 10,
+            "z": 10
+          },
+          "visible": true,
+          "layer": 0,
+          "prefabId": null
         }
       ],
       "components": [

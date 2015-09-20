@@ -1,0 +1,29 @@
+{
+  "uniforms": [
+    {
+      "id": "0",
+      "name": "map",
+      "type": "t",
+      "value": "map"
+    },
+    {
+      "id": "1",
+      "name": "speeds",
+      "type": "v4",
+      "value": [
+        0.51,
+        0.42,
+        0.6,
+        0.38
+      ]
+    }
+  ],
+  "useLightUniforms": false,
+  "attributes": [],
+  "vertexShader": {
+    "revisionId": 0
+  },
+  "fragmentShader": {
+    "revisionId": 1045
+  }
+}

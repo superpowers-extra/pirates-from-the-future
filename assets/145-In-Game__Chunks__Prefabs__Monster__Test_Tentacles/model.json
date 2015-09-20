@@ -1,0 +1,95 @@
+{
+  "unitRatio": 1,
+  "upAxisMatrix": null,
+  "attributes": [
+    "index",
+    "position",
+    "normal",
+    "uv",
+    "skinIndex",
+    "skinWeight"
+  ],
+  "bones": [
+    {
+      "name": "Bone001",
+      "matrix": [
+        1.7602586055431857e-12,
+        1,
+        -0.0000018763713569569518,
+        0,
+        1,
+        1.7602586055431857e-12,
+        0.0000018763713569569518,
+        0,
+        0.0000018763713569569518,
+        -0.0000018763713569569518,
+        -1,
+        0,
+        0.5,
+        0,
+        0.8660249710083008,
+        1
+      ],
+      "parentIndex": null
+    },
+    {
+      "name": "Bone002",
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        15,
+        0.0000024399998892477015,
+        1.500000053056283e-7,
+        1
+      ],
+      "parentIndex": 0
+    },
+    {
+      "name": "Bone003",
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        10,
+        0.000008619999789516442,
+        1.500000053056283e-7,
+        1
+      ],
+      "parentIndex": 1
+    }
+  ],
+  "maps": [
+    "map"
+  ],
+  "filtering": "pixelated",
+  "wrapping": "clampToEdge",
+  "animations": [],
+  "opacity": null,
+  "advancedTextures": false,
+  "mapSlots": {
+    "map": "map",
+    "light": null,
+    "specular": null,
+    "alpha": null,
+    "normal": null
+  }
+}

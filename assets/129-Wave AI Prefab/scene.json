@@ -1,0 +1,53 @@
+{
+  "nodes": [
+    {
+      "id": "0",
+      "name": "Bark",
+      "children": [],
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "config": {
+            "modelAssetId": "137",
+            "animationId": null,
+            "castShadow": false,
+            "receiveShadow": false,
+            "color": "6a6a6a",
+            "overrideOpacity": false,
+            "opacity": null,
+            "materialType": "shader",
+            "shaderAssetId": "87"
+          },
+          "id": "0"
+        },
+        {
+          "type": "Behavior",
+          "config": {
+            "behaviorName": "BarkAIBehavior",
+            "propertyValues": {}
+          },
+          "id": "1"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 0.3,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    }
+  ]
+}

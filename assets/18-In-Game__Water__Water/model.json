@@ -1,9 +1,8 @@
 {
-  "unitRatio": 10,
+  "unitRatio": 1,
   "upAxisMatrix": null,
   "attributes": [
     "position",
-    "uv",
     "normal"
   ],
   "bones": null,
@@ -19,5 +18,7 @@
     "specular": null,
     "alpha": null,
     "normal": null
-  }
+  },
+  "filtering": "smooth",
+  "wrapping": "repeat"
 }

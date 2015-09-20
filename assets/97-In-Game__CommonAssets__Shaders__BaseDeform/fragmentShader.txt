@@ -1,0 +1,62 @@
+#ifndef GL_OES_standard_derivatives
+    #extension GL_OES_standard_derivatives : enable
+#endif 
+#define PHONG
+
+THREE_ShaderChunk(common)
+THREE_ShaderChunk(lights_phong_pars_fragment)
+THREE_ShaderChunk(shadowmap_pars_fragment)
+  
+vec3 emissive = vec3(0.0);
+
+uniform float specularStrength;
+uniform float shininess;
+uniform vec3 specular;
+
+uniform sampler2D map;
+varying vec2 vUv;
+
+vec3 pow (vec3 v, float f)
+{
+  return vec3(pow(v.x, f), pow(v.y, f), pow(v.z, f) );  
+}
+
+vec3 clamp01( vec3 v )
+{
+  return clamp( v, 0.0, 1.0);
+}
+
+float homothetie( float value, float start, float end, float targetStart, float targetEnd )
+{
+  float _out = ( value - start ) / ( end - start );
+  
+  _out = _out * (targetEnd - targetStart) + targetStart;
+  
+  return _out;
+}
+
+void main() {
+  
+  vec3 outgoingLight = vec3( 0.0 ); // outgoing light does not have an alpha, the surface does
+  vec4 diffuseColor = vec4( 1. );
+  
+  THREE_ShaderChunk(lights_phong_fragment)
+
+  vec4 c = texture2D(map, vUv);
+  
+  totalDiffuseLight = clamp01( pow( totalDiffuseLight + 0.5, 2.2 ) );
+  
+  totalSpecularLight = clamp01( pow( totalSpecularLight + 0.5, 2.2 ) );
+  
+  outgoingLight = diffuseColor.rgb * ( totalDiffuseLight + ambientLightColor ) + totalSpecularLight + emissive;
+  
+  //outgoingLight = clamp01( outgoingLight + 0.5 );
+  
+  THREE_ShaderChunk(shadowmap_fragment)
+  
+  c.rgb *= outgoingLight;
+  
+  //c.rgb = totalSpecularLight;
+  
+  gl_FragColor = c ;
+}

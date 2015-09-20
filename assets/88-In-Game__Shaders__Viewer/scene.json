@@ -1,0 +1,144 @@
+{
+  "nodes": [
+    {
+      "id": "0",
+      "name": "boat",
+      "children": [],
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "config": {
+            "modelAssetId": "6",
+            "animationId": null,
+            "castShadow": true,
+            "receiveShadow": true,
+            "color": "ffffff",
+            "overrideOpacity": false,
+            "opacity": null,
+            "materialType": "shader",
+            "shaderAssetId": "87"
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0.9017999504940436,
+        "z": 0,
+        "w": -0.4321537251888369
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    },
+    {
+      "id": "1",
+      "name": "light",
+      "children": [],
+      "components": [
+        {
+          "type": "Light",
+          "config": {
+            "type": "directional",
+            "color": "ffffff",
+            "intensity": 1,
+            "distance": 0,
+            "angle": 60,
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castShadow": true,
+            "shadowMapSize": {
+              "width": 512,
+              "height": 512
+            },
+            "shadowBias": 0.001,
+            "shadowDarkness": 0.5,
+            "shadowCameraNearPlane": 0.1,
+            "shadowCameraFarPlane": 20,
+            "shadowCameraFov": 50,
+            "shadowCameraSize": {
+              "top": 10,
+              "bottom": -10,
+              "left": -10,
+              "right": 10
+            }
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": -0.0762237012386322,
+        "y": 4.022141456604004,
+        "z": 4.468225955963135
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    },
+    {
+      "id": "2",
+      "name": "boat",
+      "children": [],
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "config": {
+            "modelAssetId": "6",
+            "animationId": null,
+            "castShadow": true,
+            "receiveShadow": true,
+            "color": "ffffff",
+            "overrideOpacity": false,
+            "opacity": null,
+            "materialType": "phong",
+            "shaderAssetId": "87"
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": -0.6067252159118652,
+        "y": -0.9356558918952942,
+        "z": -2.962921619415283
+      },
+      "orientation": {
+        "x": 0,
+        "y": -0.5650224561955699,
+        "z": 0,
+        "w": 0.8250755177960463
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    }
+  ]
+}

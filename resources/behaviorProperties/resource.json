@@ -5,6 +5,10 @@
       "parentBehavior": null,
       "properties": [
         {
+          "name": "playerIndex",
+          "type": "number"
+        },
+        {
           "name": "position",
           "type": "Sup.Math.Vector3"
         },
@@ -13,11 +17,7 @@
           "type": "number"
         },
         {
-          "name": "playerIndex",
-          "type": "number"
-        },
-        {
-          "name": "wheelPosition",
+          "name": "speed",
           "type": "Sup.Math.Vector3"
         }
       ]
@@ -25,7 +25,16 @@
     "CameraBehavior": {
       "scriptId": "7",
       "parentBehavior": null,
-      "properties": []
+      "properties": [
+        {
+          "name": "position",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "targetPosition",
+          "type": "Sup.Math.Vector3"
+        }
+      ]
     },
     "CharacterBehavior": {
       "scriptId": "16",
@@ -44,12 +53,36 @@
           "type": "number"
         },
         {
+          "name": "speed",
+          "type": "number"
+        },
+        {
+          "name": "maxSpeed",
+          "type": "number"
+        },
+        {
+          "name": "targetPosition",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "targetAngle",
+          "type": "number"
+        },
+        {
+          "name": "weaponRange",
+          "type": "number"
+        },
+        {
           "name": "interactiveY",
           "type": "number"
         },
         {
           "name": "interactiveTimer",
           "type": "number"
+        },
+        {
+          "name": "hasStruck",
+          "type": "boolean"
         }
       ]
     },
@@ -85,11 +118,6 @@
       "parentBehavior": null,
       "properties": []
     },
-    "CannonBehavior": {
-      "scriptId": "38",
-      "parentBehavior": "InteractiveBehavior",
-      "properties": []
-    },
     "ButtonBehavior": {
       "scriptId": "40",
       "parentBehavior": null,
@@ -101,15 +129,49 @@
         {
           "name": "focus_sprite",
           "type": "string"
+        },
+        {
+          "name": "focus_action",
+          "type": "any"
+        },
+        {
+          "name": "unfocus_action",
+          "type": "any"
+        },
+        {
+          "name": "method",
+          "type": "string"
         }
       ]
     },
     "CannonBallBehavior": {
       "scriptId": "49",
       "parentBehavior": null,
+      "properties": [
+        {
+          "name": "velocity",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "speed",
+          "type": "number"
+        },
+        {
+          "name": "size",
+          "type": "number"
+        },
+        {
+          "name": "scale",
+          "type": "Sup.Math.Vector3"
+        }
+      ]
+    },
+    "CreditsBehavior": {
+      "scriptId": "59",
+      "parentBehavior": null,
       "properties": []
     },
-    "TextEffectBehavior": {
+    "TextBehavior": {
       "scriptId": "54",
       "parentBehavior": null,
       "properties": [
@@ -126,8 +188,203 @@
           "type": "boolean"
         },
         {
+          "name": "delay",
+          "type": "number"
+        },
+        {
+          "name": "maxLinelength",
+          "type": "number"
+        },
+        {
           "name": "defaultText",
           "type": "string"
+        }
+      ]
+    },
+    "HUDBehavior": {
+      "scriptId": "61",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "WorldMapBehavior": {
+      "scriptId": "100",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "CannonBehavior": {
+      "scriptId": "38",
+      "parentBehavior": "InteractiveBehavior",
+      "properties": [
+        {
+          "name": "cooldown",
+          "type": "number"
+        },
+        {
+          "name": "cooldownDuration",
+          "type": "number"
+        },
+        {
+          "name": "playerIndex",
+          "type": "number"
+        },
+        {
+          "name": "angleY",
+          "type": "number"
+        },
+        {
+          "name": "minAngleY",
+          "type": "number"
+        },
+        {
+          "name": "maxAngleY",
+          "type": "number"
+        },
+        {
+          "name": "maxRotationSpeed",
+          "type": "number"
+        },
+        {
+          "name": "chargeTimer",
+          "type": "number"
+        },
+        {
+          "name": "chargeDuration",
+          "type": "number"
+        },
+        {
+          "name": "chargeMultiplier",
+          "type": "number"
+        },
+        {
+          "name": "isAttacking",
+          "type": "boolean"
+        },
+        {
+          "name": "attackLaunched",
+          "type": "boolean"
+        }
+      ]
+    },
+    "CircleColliderBehavior": {
+      "scriptId": "115",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "radius",
+          "type": "number"
+        },
+        {
+          "name": "position",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "onboard",
+          "type": "boolean"
+        }
+      ]
+    },
+    "WaveAIManagerBehavior": {
+      "scriptId": "128",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "BarkAIBehavior": {
+      "scriptId": "138",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "speed",
+          "type": "number"
+        }
+      ]
+    },
+    "DialogueBehavior": {
+      "scriptId": "62",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "offset",
+          "type": "number"
+        }
+      ]
+    },
+    "BigChestBehavior": {
+      "scriptId": "148",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "OctopusBehavior": {
+      "scriptId": "149",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "CannonFxBehavior": {
+      "scriptId": "156",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "time",
+          "type": "number"
+        },
+        {
+          "name": "timeDuration",
+          "type": "number"
+        },
+        {
+          "name": "initialScale",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "finalScale",
+          "type": "Sup.Math.Vector3"
+        },
+        {
+          "name": "animCompleted",
+          "type": "boolean"
+        },
+        {
+          "name": "addScaleValue",
+          "type": "number"
+        },
+        {
+          "name": "state",
+          "type": "boolean"
+        }
+      ]
+    },
+    "BoatTentacleBehavior": {
+      "scriptId": "159",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "DialoguesDataBehavior": {
+      "scriptId": "164",
+      "parentBehavior": null,
+      "properties": []
+    },
+    "DamageableBehavior": {
+      "scriptId": "125",
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "radius",
+          "type": "number"
+        },
+        {
+          "name": "health",
+          "type": "number"
+        },
+        {
+          "name": "maxHealth",
+          "type": "number"
+        },
+        {
+          "name": "onboard",
+          "type": "boolean"
+        },
+        {
+          "name": "immune",
+          "type": "boolean"
         }
       ]
     }

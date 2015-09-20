@@ -1,0 +1,23 @@
+uniform sampler2D map;
+varying vec2 vUv;
+varying vec2 oUv;
+
+uniform float factor;
+
+void main()
+{
+  if ( factor == 0.0) discard;
+  if ( vUv.y > 0.97 ) discard;
+  
+  vec4 c = texture2D(map, vUv);
+  
+  if ( factor < 0.2 ) c.a = factor * 5.0;
+  
+  if ( oUv.x < 0.4 )
+  {
+    float fFoam = 0.85 * ( 1.0 - oUv.x / 0.4 );
+    c.rgb = vec3(1.0) * fFoam + c.rgb * (1.0 - fFoam);
+  }
+  
+  gl_FragColor = c;
+}

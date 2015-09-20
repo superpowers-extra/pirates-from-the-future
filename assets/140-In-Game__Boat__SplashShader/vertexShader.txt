@@ -1,0 +1,56 @@
+varying vec2 vUv;
+varying vec2 oUv;
+
+uniform float time;
+uniform float factor;
+uniform float uvSpeed;
+uniform vec3 noiseAxises;
+uniform float noiseFactor;
+uniform float moveDirection;
+uniform float sideFactor;
+uniform float yMultiplier;
+
+float rand(float n){return fract(sin(n) * 43758.5453123);}
+
+float rand(vec2 n) { 
+    return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
+}
+
+float noise(float p){
+    float fl = floor(p);
+  float fc = fract(p);
+    return mix(rand(fl), rand(fl + 1.0), fc);
+}
+
+float noise(vec2 n) {
+    const vec2 d = vec2(0.0, 1.0);
+  vec2 b = floor(n), f = smoothstep(vec2(0.0), vec2(1.0), fract(n));
+    return mix(mix(rand(b), rand(b + d.yx), f.x), mix(rand(b + d.xy), rand(b + d.yy), f.x), f.y);
+}
+
+void main() {
+  vec3 p = position;
+  
+  p.y *= factor * yMultiplier;
+  
+  vUv = oUv = uv;
+  
+  vUv.x -= time * ( factor + uvSpeed );
+  
+  vec3 displace = noise( vUv.x * noiseFactor * sign(p.x) ) * vUv.y * noiseAxises * factor;
+  
+  if ( ( moveDirection < -0.3) && ( p.x > 0.0 ) )
+  {
+      displace -= uv.x * sideFactor * ( moveDirection + 0.3 )/0.7;
+  }
+  else if ( ( moveDirection > 0.3) && ( p.x < 0.0 ) )
+  {
+    displace += uv.x * sideFactor * ( moveDirection - 0.3 ) / 0.7;
+  }
+  
+  displace.x = abs(displace.x) * sign(p.x);
+  
+  p += displace;
+  
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(p,1.0);
+}

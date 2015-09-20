@@ -1,0 +1,112 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Water",
+      "children": [],
+      "components": [],
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": "27"
+    },
+    {
+      "id": "2",
+      "name": "Light",
+      "children": [],
+      "components": [
+        {
+          "type": "Light",
+          "config": {
+            "type": "directional",
+            "color": "ffffff",
+            "intensity": 1,
+            "distance": 0,
+            "angle": 60,
+            "target": {
+              "x": 0,
+              "y": 0,
+              "z": 0
+            },
+            "castShadow": true,
+            "shadowMapSize": {
+              "width": 512,
+              "height": 512
+            },
+            "shadowBias": 0,
+            "shadowDarkness": 0.5,
+            "shadowCameraNearPlane": 0.1,
+            "shadowCameraFarPlane": 1000,
+            "shadowCameraFov": 50,
+            "shadowCameraSize": {
+              "top": 100,
+              "bottom": -100,
+              "left": -100,
+              "right": 100
+            }
+          },
+          "id": "0"
+        }
+      ],
+      "position": {
+        "x": 1.482072353363037,
+        "y": 81,
+        "z": 24.46339225769043
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": null
+    },
+    {
+      "id": "3",
+      "name": "Island",
+      "children": [],
+      "components": [],
+      "position": {
+        "x": 1.482072353363037,
+        "y": 1.6082611083984375,
+        "z": 24.46339225769043
+      },
+      "orientation": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "scale": {
+        "x": 8.064176559448242,
+        "y": 8.064176559448242,
+        "z": 8.064176559448242
+      },
+      "visible": true,
+      "layer": 0,
+      "prefabId": "96"
+    }
+  ]
+}

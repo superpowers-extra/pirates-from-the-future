@@ -1,0 +1,87 @@
+#define PHONG
+varying vec3 vViewPosition;
+#ifndef FLAT_SHADED
+varying vec3 vNormal;
+#endif
+
+THREE_ShaderChunk(common)
+THREE_ShaderChunk(lights_phong_pars_vertex)
+THREE_ShaderChunk(shadowmap_pars_vertex)
+
+float Deg2Rad = 0.01745329251;
+
+uniform float time;
+uniform sampler2D displace;
+uniform vec4 heights;
+uniform vec4 scaleFactors;
+uniform vec4 rotateValues;
+uniform vec4 speedsX;
+uniform vec4 speedsZ;
+
+varying vec3 vPosition;
+varying mat3 vNormalMatrix;
+
+varying vec2 vUv;
+varying vec3 lambertLight;
+
+varying vec4 debug;
+
+void main() {
+  vec4 p = modelMatrix * vec4(position,1.0);
+  
+  THREE_ShaderChunk(defaultnormal_vertex)
+  #ifndef FLAT_SHADED // Normal computed with derivatives when FLAT_SHADED
+  vNormal = normalize( transformedNormal );
+  #endif
+  
+  objectNormal = vec3(0);
+  
+  float totalHeights = heights.x + heights.y + heights.z + heights.w;
+    
+  for ( int i=0 ; i<4 ; i++ )
+  {
+    if ( heights[i] != 0.0 )
+    {
+      vec2 tmpUV = p.xz * scaleFactors[i];
+
+      float angle = rotateValues[i] * Deg2Rad;
+
+      mat2 rotation = mat2( 
+        cos(angle), sin(angle),
+        -sin(angle), cos(angle) );
+
+      mat2 counterRotation = mat2( 
+        cos(-angle), sin(-angle),
+        -sin(-angle), cos(-angle) );
+      
+      tmpUV = rotation * tmpUV;
+
+      tmpUV.x += time * speedsX[i];
+      tmpUV.y += time * speedsZ[i];
+
+      vec4 tex = texture2D(displace, tmpUV );
+
+      p.y += tex.a * heights[i];
+
+      //objectNormal += vec3(counterRotation*tex.rg, tex.b) * heights[i] / totalHeights ;
+    }
+  }
+  
+  //vNormal = normalize(objectNormal);
+  vNormal = vec3(0.0, 1.0, 0.0 );
+  
+  vNormalMatrix = normalMatrix;
+  vNormal = normalMatrix * vNormal;
+  transformedNormal = vNormal;
+    
+  THREE_ShaderChunk(default_vertex)
+  vViewPosition = -mvPosition.xyz;
+  THREE_ShaderChunk(worldpos_vertex)
+  THREE_ShaderChunk(lights_phong_vertex)
+  THREE_ShaderChunk(shadowmap_vertex)
+    
+    debug.rgb = vViewPosition;
+  
+  vPosition = p.xyz;
+  gl_Position = projectionMatrix * viewMatrix * p;
+}

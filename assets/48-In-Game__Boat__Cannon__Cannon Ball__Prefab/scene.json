@@ -6,27 +6,27 @@
       "children": [],
       "components": [
         {
-          "type": "ModelRenderer",
-          "config": {
-            "modelAssetId": "36",
-            "animationId": null,
-            "castShadow": false,
-            "receiveShadow": false,
-            "color": "64ee67",
-            "overrideOpacity": false,
-            "opacity": null,
-            "materialType": "basic",
-            "shaderAssetId": null
-          },
-          "id": "0"
-        },
-        {
           "type": "Behavior",
           "config": {
             "behaviorName": "CannonBallBehavior",
             "propertyValues": {}
           },
           "id": "1"
+        },
+        {
+          "type": "ModelRenderer",
+          "config": {
+            "modelAssetId": "147",
+            "animationId": null,
+            "castShadow": true,
+            "receiveShadow": false,
+            "color": "ffffff",
+            "overrideOpacity": false,
+            "opacity": null,
+            "materialType": "basic",
+            "shaderAssetId": "87"
+          },
+          "id": "4"
         }
       ],
       "position": {
@@ -41,9 +41,9 @@
         "w": 1
       },
       "scale": {
-        "x": 0.8,
-        "y": 0.8,
-        "z": 0.4
+        "x": 2,
+        "y": 2,
+        "z": 2
       },
       "visible": true,
       "layer": 0,
