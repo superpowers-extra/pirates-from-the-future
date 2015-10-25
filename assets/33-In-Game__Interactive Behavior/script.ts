@@ -35,4 +35,3 @@ abstract class InteractiveBehavior extends Sup.Behavior {
   
   abstract action(playerIndex: number);
 }
-Sup.registerBehavior(InteractiveBehavior);
