@@ -123,11 +123,5 @@
     }
   ],
   "useLightUniforms": true,
-  "attributes": [],
-  "vertexShader": {
-    "revisionId": 1291
-  },
-  "fragmentShader": {
-    "revisionId": 1685
-  }
+  "attributes": []
 }

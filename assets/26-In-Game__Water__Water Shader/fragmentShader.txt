@@ -102,8 +102,10 @@ varying vec4 debug;
 void main()
 {
   vec3 outgoingLight = vec3( 0.0 ); // outgoing light does not have an alpha, the surface does
+  vec3 shadowMask = vec3( 1.0 );
   vec4 diffuseColor = vec4( 1. );
   
+  THREE_ShaderChunk(normal_phong_fragment)
   THREE_ShaderChunk(lights_phong_fragment)
 
   vec4 c = vec4( 0.5, 0.8, 1.0, 1.0);
@@ -140,7 +142,7 @@ void main()
   THREE_ShaderChunk(shadowmap_fragment)
   
   #ifdef USE_SHADOWMAP
-  outgoingLight = m_outgoingLight * ( 1.0-( (1.0-shadowColor) * (1.0-shadowColorAdd ) ) );
+  outgoingLight = m_outgoingLight * ( 1.0-( (1.0-shadowMask) * (1.0-shadowColorAdd ) ) );
   #endif
     
   c.rgb *= outgoingLight;

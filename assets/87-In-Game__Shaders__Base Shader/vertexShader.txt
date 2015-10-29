@@ -12,6 +12,7 @@ THREE_ShaderChunk(shadowmap_pars_vertex)
 varying vec2 vUv;
 
 void main() {
+  THREE_ShaderChunk(beginnormal_vertex)
   THREE_ShaderChunk(skinbase_vertex)
   THREE_ShaderChunk(skinnormal_vertex)
   THREE_ShaderChunk(defaultnormal_vertex)
@@ -19,8 +20,9 @@ void main() {
   vNormal = normalize( transformedNormal );
   #endif
   
+  THREE_ShaderChunk(begin_vertex)
   THREE_ShaderChunk(skinning_vertex)
-  THREE_ShaderChunk(default_vertex)
+  THREE_ShaderChunk(project_vertex)
   vViewPosition = -mvPosition.xyz;
   THREE_ShaderChunk(worldpos_vertex)
   THREE_ShaderChunk(lights_phong_vertex)

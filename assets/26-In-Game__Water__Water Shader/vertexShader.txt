@@ -29,6 +29,7 @@ varying vec4 debug;
 void main() {
   vec4 p = modelMatrix * vec4(position,1.0);
   
+  THREE_ShaderChunk(beginnormal_vertex)
   THREE_ShaderChunk(defaultnormal_vertex)
   #ifndef FLAT_SHADED // Normal computed with derivatives when FLAT_SHADED
   vNormal = normalize( transformedNormal );
@@ -73,8 +74,9 @@ void main() {
   vNormalMatrix = normalMatrix;
   vNormal = normalMatrix * vNormal;
   transformedNormal = vNormal;
-    
-  THREE_ShaderChunk(default_vertex)
+  
+  THREE_ShaderChunk(begin_vertex)
+  THREE_ShaderChunk(project_vertex)
   vViewPosition = -mvPosition.xyz;
   THREE_ShaderChunk(worldpos_vertex)
   THREE_ShaderChunk(lights_phong_vertex)

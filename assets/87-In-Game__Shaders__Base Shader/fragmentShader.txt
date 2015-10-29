@@ -40,8 +40,10 @@ float homothetie( float value, float start, float end, float targetStart, float 
 void main() {
   
   vec3 outgoingLight = vec3( 0.0 ); // outgoing light does not have an alpha, the surface does
+  vec3 shadowMask = vec3( 1.0 );
   vec4 diffuseColor = vec4( 1. );
   
+  THREE_ShaderChunk(normal_phong_fragment)
   THREE_ShaderChunk(lights_phong_fragment)
 
   vec4 c = texture2D(map, vUv);
